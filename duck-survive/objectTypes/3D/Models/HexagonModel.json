@@ -1,0 +1,57 @@
+{
+	"name": "HexagonModel",
+	"plugin-id": "Mikal_3DObject",
+	"sid": 526883763458537,
+	"isGlobal": false,
+	"instanceVariables": [
+		{
+			"name": "active",
+			"type": "number",
+			"desc": "",
+			"show": true,
+			"sid": 433397943501978
+		},
+		{
+			"name": "selected",
+			"type": "number",
+			"desc": "1 is selected",
+			"show": true,
+			"sid": 365046141818262
+		},
+		{
+			"name": "hex_index",
+			"type": "number",
+			"desc": "",
+			"show": true,
+			"sid": 720046514951247
+		},
+		{
+			"name": "collectable_picked",
+			"type": "number",
+			"desc": "",
+			"show": true,
+			"sid": 309977741528855
+		}
+	],
+	"behaviorTypes": [
+		{
+			"behaviorId": "Tween",
+			"name": "Tween",
+			"sid": 900601073619059
+		}
+	],
+	"effectTypes": [],
+	"image": {
+		"width": 2048,
+		"height": 2048,
+		"originX": 0.5,
+		"originY": 0.5,
+		"originalSource": "",
+		"exportFormat": "lossless",
+		"exportQuality": 0.8,
+		"fileType": "image/png",
+		"imageSpriteId": 3768809,
+		"useCollisionPoly": true,
+		"tag": ""
+	}
+}

@@ -1,0 +1,30 @@
+{
+	"name": "Collectables",
+	"plugin-id": "Shape3D",
+	"sid": 379007607824142,
+	"instanceVariables": [
+		{
+			"name": "is_spawned",
+			"type": "number",
+			"desc": "",
+			"show": true,
+			"sid": 368450150774762
+		},
+		{
+			"name": "is_buff",
+			"type": "boolean",
+			"desc": "",
+			"show": true,
+			"sid": 411344579139651
+		}
+	],
+	"behaviorTypes": [],
+	"effectTypes": [],
+	"members": [
+		"Collectable_Pancake",
+		"Collectable_Banana",
+		"Collectable_Muffin",
+		"Collectable_Apple",
+		"Collectable_Mushroom"
+	]
+}

@@ -1,0 +1,764 @@
+{
+	"projectFormatVersion": 1,
+	"savedWithRelease": 40700,
+	"name": "Duck Survive",
+	"runtime": "c3",
+	"useWorker": "auto",
+	"bundleAddons": false,
+	"usedAddons": [
+		{
+			"type": "plugin",
+			"id": "Audio",
+			"name": "Ses",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
+			"type": "plugin",
+			"id": "Browser",
+			"name": "Tarayıcı",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
+			"type": "plugin",
+			"id": "Camera3D",
+			"name": "3D kamera",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
+			"type": "plugin",
+			"id": "Keyboard",
+			"name": "Klavye",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
+			"type": "plugin",
+			"id": "Mikal_3DObject",
+			"name": "[3D object]",
+			"author": "Mikal",
+			"bundled": false,
+			"version": "2.58.0"
+		},
+		{
+			"type": "plugin",
+			"id": "Mouse",
+			"name": "Fare",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
+			"type": "plugin",
+			"id": "Particles",
+			"name": "Partiküller",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
+			"type": "plugin",
+			"id": "Shape3D",
+			"name": "3D şekil",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
+			"type": "plugin",
+			"id": "Sprite",
+			"name": "Sprite",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
+			"type": "plugin",
+			"id": "Text",
+			"name": "Yazı",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
+			"type": "plugin",
+			"id": "TiledBg",
+			"name": "Döşemeli Arkaplan",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
+			"type": "plugin",
+			"id": "Touch",
+			"name": "Dokun",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
+			"type": "behavior",
+			"id": "DragnDrop",
+			"name": "Sürükle & Bırak",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
+			"type": "behavior",
+			"id": "EightDir",
+			"name": "8 Yön",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
+			"type": "behavior",
+			"id": "Fade",
+			"name": "Belirme",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
+			"type": "behavior",
+			"id": "Pin",
+			"name": "Tuttur",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
+			"type": "behavior",
+			"id": "Sin",
+			"name": "Sinüs",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
+			"type": "behavior",
+			"id": "Tween",
+			"name": "Ara",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
+			"type": "effect",
+			"id": "blurhorizontal",
+			"name": "Yatay bulanıklık",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
+			"type": "effect",
+			"id": "burn",
+			"name": "Yak",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
+			"type": "effect",
+			"id": "difference",
+			"name": "Fark",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
+			"type": "effect",
+			"id": "fogexponential",
+			"name": "Sis (üstel)",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
+			"type": "effect",
+			"id": "hsladjust",
+			"name": "HSL'yi ayarlayın",
+			"author": "Scirra",
+			"bundled": false
+		}
+	],
+	"uniqueId": "1q5ayijoa70",
+	"objectTypes": {
+		"items": [],
+		"subfolders": [
+			{
+				"items": [
+					"3DCamera",
+					"Mouse",
+					"Keyboard",
+					"Browser",
+					"Touch",
+					"CheckInputType",
+					"Audio"
+				],
+				"subfolders": [],
+				"name": "Plugins"
+			},
+			{
+				"items": [],
+				"subfolders": [
+					{
+						"items": [],
+						"subfolders": [
+							{
+								"items": [
+									"LogoBg",
+									"LogoText",
+									"LogoText2",
+									"ProgressBar",
+									"Progress",
+									"ProgressDuck",
+									"ProgressHead"
+								],
+								"subfolders": [],
+								"name": "Loading"
+							},
+							{
+								"items": [
+									"ScoreText",
+									"ScoreBg",
+									"ScoreBgArrows"
+								],
+								"subfolders": [],
+								"name": "Game"
+							},
+							{
+								"items": [
+									"GameLabelSprite",
+									"PlayButtonSprite",
+									"LogoButton",
+									"InstagramButton"
+								],
+								"subfolders": [
+									{
+										"items": [
+											"SettingsBG",
+											"SettingLabel",
+											"SettingsBg2",
+											"BackButtonSprite",
+											"SettingsButtonSprite",
+											"SoundButtonText",
+											"MusicButtonText",
+											"VibrateButtonText"
+										],
+										"subfolders": [],
+										"name": "Settings"
+									},
+									{
+										"items": [
+											"TutorialButtonSprite",
+											"TutorialBg",
+											"TutorialLabel",
+											"GotItButtonText",
+											"TutorialText1",
+											"TutorialKeyboard",
+											"TutorialMouse",
+											"TutorialTouch",
+											"TutorialBanana",
+											"TutorialApple",
+											"TutorialMushroom",
+											"TutorialPancake",
+											"TutorialMuffin",
+											"TutorialText2",
+											"TutorialText3",
+											"TutorialIcons",
+											"TutorialText4"
+										],
+										"subfolders": [],
+										"name": "Tutorial"
+									}
+								],
+								"name": "Initial"
+							},
+							{
+								"items": [
+									"GameOverBg",
+									"GameOverScoreText",
+									"GameOverHighScoreText",
+									"RestartButtonSprite",
+									"GameOverDeathCountText",
+									"GameOverTimeText",
+									"GameOverSurviveRateText",
+									"HomeButtonSprite"
+								],
+								"subfolders": [],
+								"name": "Over"
+							},
+							{
+								"items": [
+									"JoystickBg",
+									"JoystickSprite",
+									"JoystickDrag"
+								],
+								"subfolders": [],
+								"name": "Joystick"
+							}
+						],
+						"name": "UI"
+					},
+					{
+						"items": [
+							"SlotBg0",
+							"SlotBg1",
+							"SlotBg3",
+							"SlotBg2",
+							"SlotBuffIcons",
+							"BuffProgressBar",
+							"BuffProgressLine",
+							"ProgressBuffIcons"
+						],
+						"subfolders": [],
+						"name": "Buff"
+					}
+				],
+				"name": "Objects"
+			},
+			{
+				"items": [
+					"TPCam"
+				],
+				"subfolders": [
+					{
+						"items": [
+							"AppleModel",
+							"BananaModel",
+							"PancakeModel",
+							"MuffinModel",
+							"HexagonModel",
+							"PlayerDuckModel",
+							"MushroomModel"
+						],
+						"subfolders": [],
+						"name": "Models"
+					},
+					{
+						"items": [
+							"Collectable_Apple",
+							"Player",
+							"Collectable_Banana",
+							"Collectable_Muffin",
+							"Collectable_Pancake",
+							"Collectable_Mushroom"
+						],
+						"subfolders": [
+							{
+								"items": [
+									"OffGrid_1",
+									"OffGrid_2",
+									"OffGrid_3",
+									"OffGrid_4",
+									"OffGrid_5",
+									"OffGrid_6"
+								],
+								"subfolders": [],
+								"name": "OffGrid"
+							}
+						],
+						"name": "3DShapes"
+					}
+				],
+				"name": "3D"
+			},
+			{
+				"items": [
+					"TiledBackground",
+					"TiledBackground2",
+					"SmokeEffect",
+					"BuffParticle3",
+					"BuffParticle2",
+					"BuffParticle0",
+					"BuffParticle1",
+					"BuffParticle5",
+					"IceFrame",
+					"BrightEdge",
+					"RedFrame",
+					"CursorSprite"
+				],
+				"subfolders": [],
+				"name": "Effects"
+			}
+		]
+	},
+	"autosaveData": null,
+	"containers": [],
+	"families": {
+		"items": [
+			"LoadingProgressBar",
+			"InitialUI",
+			"Joystick",
+			"CollectableModels",
+			"Collectables",
+			"Slot",
+			"GameOverTexts",
+			"TutorialObjects",
+			"TutorialCollectables",
+			"TutorialTexts",
+			"SettingsObject",
+			"SettingsTexts"
+		],
+		"subfolders": []
+	},
+	"layouts": {
+		"items": [
+			"GameLayout"
+		],
+		"subfolders": []
+	},
+	"eventSheets": {
+		"items": [
+			"GameEvent",
+			"props",
+			"funcs"
+		],
+		"subfolders": []
+	},
+	"rootFileFolders": {
+		"script": {
+			"items": [],
+			"subfolders": []
+		},
+		"sound": {
+			"items": [
+				{
+					"name": "collect.webm",
+					"type": "audio/webm; codecs=opus",
+					"sid": 382932968044755,
+					"file-info": {
+						"purpose": "none"
+					}
+				},
+				{
+					"name": "ui_click.webm",
+					"type": "audio/webm; codecs=opus",
+					"sid": 553084795926082,
+					"file-info": {
+						"purpose": "none"
+					}
+				},
+				{
+					"name": "music.webm",
+					"type": "audio/webm; codecs=opus",
+					"sid": 924261496560204,
+					"file-info": {
+						"purpose": "none"
+					}
+				},
+				{
+					"name": "slot.webm",
+					"type": "audio/webm; codecs=opus",
+					"sid": 827023323932444,
+					"file-info": {
+						"purpose": "none"
+					}
+				},
+				{
+					"name": "score.webm",
+					"type": "audio/webm; codecs=opus",
+					"sid": 135507464592705,
+					"file-info": {
+						"purpose": "none"
+					}
+				},
+				{
+					"name": "slot2.webm",
+					"type": "audio/webm; codecs=opus",
+					"sid": 746948038437389,
+					"file-info": {
+						"purpose": "none"
+					}
+				},
+				{
+					"name": "drop.webm",
+					"type": "audio/webm; codecs=opus",
+					"sid": 103259921829458,
+					"file-info": {
+						"purpose": "none"
+					}
+				}
+			],
+			"subfolders": []
+		},
+		"music": {
+			"items": [],
+			"subfolders": []
+		},
+		"video": {
+			"items": [],
+			"subfolders": []
+		},
+		"font": {
+			"items": [
+				{
+					"name": "Ahkio-W00-Bold.ttf",
+					"type": "application/font-sfnt",
+					"sid": 256758194188547,
+					"file-info": {
+						"purpose": "none"
+					}
+				}
+			],
+			"subfolders": []
+		},
+		"icon": {
+			"items": [
+				{
+					"name": "icon-256.png",
+					"type": "image/png",
+					"sid": 162344096773489,
+					"icon-info": {
+						"purpose": "app-icon"
+					}
+				},
+				{
+					"name": "icon-512.png",
+					"type": "image/png",
+					"sid": 225164623271869,
+					"icon-info": {
+						"purpose": "app-icon"
+					}
+				},
+				{
+					"name": "icon-16.png",
+					"type": "image/png",
+					"sid": 556091596331530,
+					"icon-info": {
+						"purpose": "app-icon"
+					}
+				},
+				{
+					"name": "loading-logo.png",
+					"type": "image/png",
+					"sid": 668725809826166,
+					"icon-info": {
+						"purpose": "loading-logo"
+					}
+				},
+				{
+					"name": "icon-128.png",
+					"type": "image/png",
+					"sid": 925908333838638,
+					"icon-info": {
+						"purpose": "app-icon"
+					}
+				},
+				{
+					"name": "icon-32.png",
+					"type": "image/png",
+					"sid": 346740340317169,
+					"icon-info": {
+						"purpose": "app-icon"
+					}
+				},
+				{
+					"name": "icon-64.png",
+					"type": "image/png",
+					"sid": 321858087215782,
+					"icon-info": {
+						"purpose": "app-icon"
+					}
+				}
+			],
+			"subfolders": []
+		},
+		"general": {
+			"items": [
+				{
+					"name": "hex_poses.json",
+					"type": "application/json",
+					"sid": 465499825074327,
+					"file-info": {
+						"purpose": "none"
+					}
+				}
+			],
+			"subfolders": [
+				{
+					"items": [
+						{
+							"name": "duck.glb",
+							"type": "application/octet-stream",
+							"sid": 237151246637262,
+							"file-info": {
+								"purpose": "none"
+							}
+						},
+						{
+							"name": "hex.glb",
+							"type": "application/octet-stream",
+							"sid": 361354769827337,
+							"file-info": {
+								"purpose": "none"
+							}
+						},
+						{
+							"name": "hexagon.glb",
+							"type": "application/octet-stream",
+							"sid": 260603694861813,
+							"file-info": {
+								"purpose": "none"
+							}
+						},
+						{
+							"name": "sphere.glb",
+							"type": "application/octet-stream",
+							"sid": 408742366880665,
+							"file-info": {
+								"purpose": "none"
+							}
+						}
+					],
+					"subfolders": [
+						{
+							"items": [
+								{
+									"name": "apple.glb",
+									"type": "application/octet-stream",
+									"sid": 653159543640388,
+									"file-info": {
+										"purpose": "none"
+									}
+								},
+								{
+									"name": "cake.glb",
+									"type": "application/octet-stream",
+									"sid": 156986522230853,
+									"file-info": {
+										"purpose": "none"
+									}
+								},
+								{
+									"name": "pancake.glb",
+									"type": "application/octet-stream",
+									"sid": 253116163172365,
+									"file-info": {
+										"purpose": "none"
+									}
+								},
+								{
+									"name": "banana.glb",
+									"type": "application/octet-stream",
+									"sid": 113762646579721,
+									"file-info": {
+										"purpose": "none"
+									}
+								},
+								{
+									"name": "muffin.glb",
+									"type": "application/octet-stream",
+									"sid": 563642684408066,
+									"file-info": {
+										"purpose": "none"
+									}
+								},
+								{
+									"name": "r_duck.glb",
+									"type": "application/octet-stream",
+									"sid": 887997537062088,
+									"file-info": {
+										"purpose": "none"
+									}
+								},
+								{
+									"name": "mushroom.glb",
+									"type": "application/octet-stream",
+									"sid": 353679008901424,
+									"file-info": {
+										"purpose": "none"
+									}
+								}
+							],
+							"subfolders": [],
+							"name": "Items"
+						}
+					],
+					"name": "Models"
+				},
+				{
+					"items": [
+						{
+							"name": "hexagon_texture.png.jpg",
+							"type": "image/jpeg",
+							"sid": 313374934134960,
+							"file-info": {
+								"purpose": "none"
+							}
+						},
+						{
+							"name": "lava.jpg",
+							"type": "image/jpeg",
+							"sid": 502212017217861,
+							"file-info": {
+								"purpose": "none"
+							}
+						}
+					],
+					"subfolders": [],
+					"name": "Textures"
+				}
+			]
+		}
+	},
+	"timelines": {
+		"items": [
+			"Timeline 1"
+		],
+		"subfolders": [
+			{
+				"items": [],
+				"subfolders": []
+			}
+		]
+	},
+	"flowcharts": {
+		"items": [],
+		"subfolders": []
+	},
+	"properties": {
+		"description": "",
+		"version": "1.0.0.0",
+		"author": "",
+		"authorEmail": "",
+		"authorWebsite": "",
+		"appId": "",
+		"pixelRounding": true,
+		"zAxisScale": "regular",
+		"fov": 0.7853981633974483,
+		"useLoaderLayout": true,
+		"fullscreenMode": "scale-outer",
+		"fullscreenQuality": "high",
+		"viewportFit": "auto",
+		"backgroundColor": [
+			0,
+			0,
+			0,
+			0
+		],
+		"splashColor": [
+			1,
+			1,
+			1,
+			0
+		],
+		"useThemeColor": false,
+		"themeColor": [
+			1,
+			1,
+			1,
+			0
+		],
+		"orientations": "portrait",
+		"webgpu": "auto",
+		"gpuPreference": "high-performance",
+		"scriptsType": "module",
+		"framerateMode": "vsync",
+		"sampling": "nearest",
+		"downscaling": "high",
+		"renderingMode": "auto",
+		"anisotropicFiltering": "auto",
+		"zNear": 1,
+		"zFar": 10000,
+		"maxSpriteSheetSize": 4096,
+		"loaderStyle": "percent",
+		"preloadSounds": true,
+		"cordovaiOSScheme": "app",
+		"cordovaAndroidScheme": "https",
+		"autoReloadScriptsOnPreview": false,
+		"exportFileStructure": "folders",
+		"uidAllocationMode": "increment"
+	},
+	"viewportWidth": 1080,
+	"viewportHeight": 1920,
+	"firstLayout": null
+}

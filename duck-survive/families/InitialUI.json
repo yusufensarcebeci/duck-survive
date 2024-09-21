@@ -1,0 +1,21 @@
+{
+	"name": "InitialUI",
+	"plugin-id": "Sprite",
+	"sid": 180702490748009,
+	"instanceVariables": [],
+	"behaviorTypes": [
+		{
+			"behaviorId": "Tween",
+			"name": "Tween",
+			"sid": 965058895272872
+		}
+	],
+	"effectTypes": [],
+	"members": [
+		"GameLabelSprite",
+		"PlayButtonSprite",
+		"TutorialButtonSprite",
+		"SettingsButtonSprite",
+		"InstagramButton"
+	]
+}

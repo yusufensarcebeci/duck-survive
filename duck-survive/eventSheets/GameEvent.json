@@ -1,0 +1,6482 @@
+{
+	"name": "GameEvent",
+	"events": [
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "Game_Initial",
+			"description": "",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-start-of-layout",
+							"objectClass": "System",
+							"sid": 592955837321024
+						}
+					],
+					"actions": [
+						{
+							"callFunction": "createLocalStorage",
+							"sid": 633977895283708
+						},
+						{
+							"callFunction": "sceneSetup",
+							"sid": 361741279648010
+						}
+					],
+					"sid": 399708394033562
+				}
+			],
+			"sid": 883686761730822
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "Game_Update",
+			"description": "",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "every-tick",
+							"objectClass": "System",
+							"sid": 154747038515067
+						}
+					],
+					"actions": [
+						{
+							"callFunction": "checkInputType",
+							"sid": 333205387498336
+						},
+						{
+							"callFunction": "gameResponsive",
+							"sid": 300932426920014
+						},
+						{
+							"callFunction": "ocean_move",
+							"sid": 415131001745584
+						},
+						{
+							"callFunction": "playerFall",
+							"sid": 625997736828373
+						},
+						{
+							"id": "set-position",
+							"objectClass": "PlayerDuckModel",
+							"sid": 923761913962421,
+							"parameters": {
+								"x": "Player.X",
+								"y": "Player.Y"
+							}
+						},
+						{
+							"id": "set-rotation",
+							"objectClass": "PlayerDuckModel",
+							"sid": 423534064504903,
+							"parameters": {
+								"x": "0",
+								"y": "0",
+								"z": "Player.Angle  - 90",
+								"rotation-order": "zxy"
+							}
+						},
+						{
+							"callFunction": "cameraLookAt",
+							"sid": 687345450540254
+						},
+						{
+							"callFunction": "rotateCollectableItems",
+							"sid": 731749997407576
+						}
+					],
+					"sid": 479939197600435,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "every-x-seconds",
+									"objectClass": "System",
+									"sid": 824634700384802,
+									"parameters": {
+										"interval-seconds": "hex_disable_dur"
+									}
+								},
+								{
+									"id": "compare-boolean-eventvar",
+									"objectClass": "System",
+									"sid": 508285159732712,
+									"parameters": {
+										"variable": "loading_done"
+									}
+								},
+								{
+									"id": "compare-boolean-eventvar",
+									"objectClass": "System",
+									"sid": 523514095754008,
+									"parameters": {
+										"variable": "game_started"
+									}
+								},
+								{
+									"id": "compare-boolean-eventvar",
+									"objectClass": "System",
+									"sid": 302949259562187,
+									"parameters": {
+										"variable": "game_ended"
+									},
+									"isInverted": true
+								}
+							],
+							"actions": [
+								{
+									"callFunction": "disableHex",
+									"sid": 183784316898459
+								}
+							],
+							"sid": 357677355151063,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-two-values",
+											"objectClass": "System",
+											"sid": 705140778310448,
+											"parameters": {
+												"first-value": "disabled_hex_count",
+												"comparison": 0,
+												"second-value": "disabled_hex_limit"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-eventvar-value",
+											"objectClass": "System",
+											"sid": 843958744549002,
+											"parameters": {
+												"variable": "disabled_hex_count",
+												"value": "disabled_hex_count - 2"
+											}
+										},
+										{
+											"callFunction": "enableHex",
+											"sid": 542818804401347
+										}
+									],
+									"sid": 446394405013405
+								}
+							]
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-boolean-eventvar",
+									"objectClass": "System",
+									"sid": 538557846078774,
+									"parameters": {
+										"variable": "cam_test_1"
+									},
+									"isInverted": true
+								},
+								{
+									"id": "compare-boolean-eventvar",
+									"objectClass": "System",
+									"sid": 437318832199037,
+									"parameters": {
+										"variable": "loading_done"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 894983906944345,
+									"parameters": {
+										"variable": "cam_x_add",
+										"value": "Functions.setValueOverTime(cam_move_dur,cam_x_add, -100, -50)"
+									}
+								},
+								{
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 749809451313558,
+									"parameters": {
+										"variable": "current_cam_z",
+										"value": "Functions.setValueOverTime(cam_move_dur,current_cam_z, initial_cam_z, 80)"
+									}
+								}
+							],
+							"sid": 586832303800074,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-two-values",
+											"objectClass": "System",
+											"sid": 238201060226436,
+											"parameters": {
+												"first-value": "cam_x_add",
+												"comparison": 5,
+												"second-value": "-50"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-boolean-eventvar",
+											"objectClass": "System",
+											"sid": 381706559131303,
+											"parameters": {
+												"variable": "cam_test_1",
+												"value": "true"
+											}
+										},
+										{
+											"id": "set-eventvar-value",
+											"objectClass": "System",
+											"sid": 737236166134148,
+											"parameters": {
+												"variable": "cam_start_time",
+												"value": "0"
+											}
+										},
+										{
+											"id": "set-eventvar-value",
+											"objectClass": "System",
+											"sid": 348321065311585,
+											"parameters": {
+												"variable": "initial_cam_x_add",
+												"value": "cam_x_add"
+											}
+										},
+										{
+											"id": "set-eventvar-value",
+											"objectClass": "System",
+											"sid": 837173213050247,
+											"parameters": {
+												"variable": "initial_cam_z",
+												"value": "current_cam_z"
+											}
+										}
+									],
+									"sid": 807231045720307
+								}
+							]
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-boolean-eventvar",
+									"objectClass": "System",
+									"sid": 536038010623996,
+									"parameters": {
+										"variable": "cam_value_bool"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 442915394075757,
+									"parameters": {
+										"variable": "current_cam_z",
+										"value": "Functions.setValueOverTime(cam_move_dur,current_cam_z, initial_cam_z, 150)"
+									}
+								},
+								{
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 241751020730814,
+									"parameters": {
+										"variable": "cam_x_add",
+										"value": "Functions.setValueOverTime(cam_move_dur,cam_x_add, initial_cam_x_add, 0)"
+									}
+								},
+								{
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 326180809206508,
+									"disabled": true,
+									"parameters": {
+										"variable": "divide_test",
+										"value": "Functions.setValueOverTime(cam_move_dur,divide_test,350,400)"
+									}
+								}
+							],
+							"sid": 660706300227054
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-boolean-eventvar",
+									"objectClass": "System",
+									"sid": 573604808974617,
+									"parameters": {
+										"variable": "game_started"
+									},
+									"isInverted": true
+								}
+							],
+							"actions": [
+								{
+									"callFunction": "UIResponsive",
+									"sid": 777218159695399
+								}
+							],
+							"sid": 655674530617216
+						}
+					]
+				}
+			],
+			"sid": 286671603154501
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "Camera",
+			"description": "",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"functionName": "setValueOverTime",
+					"functionDescription": "",
+					"functionCategory": "",
+					"functionReturnType": "number",
+					"functionCopyPicked": false,
+					"functionIsAsync": false,
+					"functionParameters": [
+						{
+							"name": "duration_",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "",
+							"sid": 115686370586205
+						},
+						{
+							"name": "current_value_",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "",
+							"sid": 847429312476478
+						},
+						{
+							"name": "initial_value_",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "",
+							"sid": 494796836106769
+						},
+						{
+							"name": "end_value_",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "",
+							"sid": 759178768018585
+						}
+					],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [],
+					"sid": 356251460882404,
+					"children": [
+						{
+							"eventType": "variable",
+							"name": "t",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "",
+							"isStatic": false,
+							"isConstant": false,
+							"sid": 976808905308368
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-two-values",
+									"objectClass": "System",
+									"sid": 470957736155589,
+									"parameters": {
+										"first-value": "cam_start_time",
+										"comparison": 3,
+										"second-value": "duration_"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "add-to-eventvar",
+									"objectClass": "System",
+									"sid": 765315523327683,
+									"parameters": {
+										"variable": "cam_start_time",
+										"value": "dt"
+									}
+								},
+								{
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 979204851179246,
+									"parameters": {
+										"variable": "t",
+										"value": "min(cam_start_time / duration_ , 1)"
+									}
+								},
+								{
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 106834692473925,
+									"parameters": {
+										"variable": "current_value_",
+										"value": "initial_value_ + ( (end_value_ -  initial_value_) *t) "
+									}
+								}
+							],
+							"sid": 392724120775690
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "else",
+									"objectClass": "System",
+									"sid": 384452987542833
+								}
+							],
+							"actions": [
+								{
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 815170387641480,
+									"parameters": {
+										"variable": "current_value_",
+										"value": " end_value_"
+									}
+								},
+								{
+									"id": "set-boolean-eventvar",
+									"objectClass": "System",
+									"sid": 973219067184689,
+									"parameters": {
+										"variable": "cam_value_bool",
+										"value": "false"
+									}
+								}
+							],
+							"sid": 762441766611504
+						},
+						{
+							"eventType": "block",
+							"conditions": [],
+							"actions": [
+								{
+									"id": "set-function-return-value",
+									"objectClass": "Functions",
+									"sid": 762302220085429,
+									"parameters": {
+										"value": "current_value_"
+									}
+								}
+							],
+							"sid": 802371937028241
+						}
+					]
+				},
+				{
+					"functionName": "cameraLookAt",
+					"functionDescription": "",
+					"functionCategory": "",
+					"functionReturnType": "none",
+					"functionCopyPicked": false,
+					"functionIsAsync": false,
+					"functionParameters": [],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [
+						{
+							"id": "look-at-position",
+							"objectClass": "3DCamera",
+							"sid": 427984309405796,
+							"parameters": {
+								"cam-x": "TPCam.X + cam_x_add",
+								"cam-y": " TPCam.Y ",
+								"cam-z": "current_cam_z",
+								"look-x": "Player.X",
+								"look-y": "Player.Y",
+								"look-z": "tp_camera_height - divide_test",
+								"up-x": "0",
+								"up-y": "0",
+								"up-z": "1"
+							}
+						}
+					],
+					"sid": 620983042199721
+				}
+			],
+			"sid": 948110863050060
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "Ground",
+			"description": "",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"eventType": "group",
+					"disabled": false,
+					"title": "DisableHex",
+					"description": "",
+					"isActiveOnStart": true,
+					"children": [
+						{
+							"functionName": "disableHex",
+							"functionDescription": "",
+							"functionCategory": "",
+							"functionReturnType": "none",
+							"functionCopyPicked": false,
+							"functionIsAsync": false,
+							"functionParameters": [],
+							"eventType": "function-block",
+							"conditions": [],
+							"actions": [],
+							"sid": 393412220162878,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "repeat",
+											"objectClass": "System",
+											"sid": 398324222527051,
+											"parameters": {
+												"count": "2"
+											}
+										},
+										{
+											"id": "pick-by-comparison",
+											"objectClass": "System",
+											"sid": 707141231508713,
+											"parameters": {
+												"object": "HexagonModel",
+												"expression": "HexagonModel.selected",
+												"comparison": 0,
+												"value": "0"
+											}
+										},
+										{
+											"id": "pick-by-comparison",
+											"objectClass": "System",
+											"sid": 965212847767791,
+											"parameters": {
+												"object": "HexagonModel",
+												"expression": "HexagonModel.active",
+												"comparison": 0,
+												"value": "1"
+											}
+										},
+										{
+											"id": "pick-random-instance",
+											"objectClass": "System",
+											"sid": 135354594140544,
+											"parameters": {
+												"object": "HexagonModel"
+											}
+										},
+										{
+											"id": "compare-boolean-eventvar",
+											"objectClass": "System",
+											"sid": 233299055844097,
+											"parameters": {
+												"variable": "ground_created"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-instvar-value",
+											"objectClass": "HexagonModel",
+											"sid": 328017186246422,
+											"parameters": {
+												"instance-variable": "selected",
+												"value": "1"
+											}
+										},
+										{
+											"id": "tween-one-property",
+											"objectClass": "HexagonModel",
+											"sid": 682265848759968,
+											"behaviorType": "Tween",
+											"parameters": {
+												"tags": "\"\"",
+												"property": "offsetColor",
+												"end-value": "rgbEx255(150,140,200)",
+												"time": "hex_blink_dur",
+												"ease": "default",
+												"destroy-on-complete": "no",
+												"loop": "no",
+												"ping-pong": "yes",
+												"repeat-count": "hex_blink_repeat"
+											}
+										},
+										{
+											"id": "wait-for-previous-actions",
+											"objectClass": "System",
+											"sid": 872936962658515
+										},
+										{
+											"id": "tween-one-property",
+											"objectClass": "HexagonModel",
+											"sid": 921284363762056,
+											"behaviorType": "Tween",
+											"parameters": {
+												"tags": "\"\"",
+												"property": "offsetOpacity",
+												"end-value": "0",
+												"time": "0.2",
+												"ease": "default",
+												"destroy-on-complete": "no",
+												"loop": "no",
+												"ping-pong": "no",
+												"repeat-count": "1"
+											}
+										},
+										{
+											"id": "wait-for-previous-actions",
+											"objectClass": "System",
+											"sid": 867067298152794
+										},
+										{
+											"id": "set-scale",
+											"objectClass": "HexagonModel",
+											"sid": 671105349438735,
+											"parameters": {
+												"scale": "Self.Scale * 0.73"
+											}
+										},
+										{
+											"id": "add-to-eventvar",
+											"objectClass": "System",
+											"sid": 765860862914027,
+											"parameters": {
+												"variable": "disabled_hex_count",
+												"value": "1"
+											}
+										},
+										{
+											"id": "wait",
+											"objectClass": "System",
+											"sid": 194422792919590,
+											"parameters": {
+												"seconds": "0.1"
+											}
+										},
+										{
+											"id": "set-instvar-value",
+											"objectClass": "HexagonModel",
+											"sid": 229736412819406,
+											"parameters": {
+												"instance-variable": "active",
+												"value": "0"
+											}
+										}
+									],
+									"sid": 893426686027085
+								}
+							]
+						}
+					],
+					"sid": 362199757637674
+				},
+				{
+					"eventType": "group",
+					"disabled": false,
+					"title": "EnableHex",
+					"description": "",
+					"isActiveOnStart": true,
+					"children": [
+						{
+							"functionName": "enableHex",
+							"functionDescription": "",
+							"functionCategory": "",
+							"functionReturnType": "none",
+							"functionCopyPicked": false,
+							"functionIsAsync": false,
+							"functionParameters": [],
+							"eventType": "function-block",
+							"conditions": [],
+							"actions": [],
+							"sid": 385128410332126,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "repeat",
+											"objectClass": "System",
+											"sid": 792456554325283,
+											"parameters": {
+												"count": "2"
+											}
+										},
+										{
+											"id": "pick-by-comparison",
+											"objectClass": "System",
+											"sid": 206705936579598,
+											"parameters": {
+												"object": "HexagonModel",
+												"expression": "HexagonModel.selected",
+												"comparison": 0,
+												"value": "1"
+											}
+										},
+										{
+											"id": "pick-by-comparison",
+											"objectClass": "System",
+											"sid": 759575366094927,
+											"parameters": {
+												"object": "HexagonModel",
+												"expression": "HexagonModel.active",
+												"comparison": 0,
+												"value": "0"
+											}
+										},
+										{
+											"id": "pick-random-instance",
+											"objectClass": "System",
+											"sid": 768404676899937,
+											"parameters": {
+												"object": "HexagonModel"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-instvar-value",
+											"objectClass": "HexagonModel",
+											"sid": 309289509007929,
+											"parameters": {
+												"instance-variable": "active",
+												"value": "1"
+											}
+										},
+										{
+											"id": "set-default-color",
+											"objectClass": "HexagonModel",
+											"sid": 436889981479598,
+											"parameters": {
+												"color": "rgbEx255(180,255,180)\n\n"
+											}
+										},
+										{
+											"id": "set-scale",
+											"objectClass": "HexagonModel",
+											"sid": 608843258547696,
+											"parameters": {
+												"scale": "1"
+											}
+										},
+										{
+											"id": "tween-one-property",
+											"objectClass": "HexagonModel",
+											"sid": 562256368682730,
+											"behaviorType": "Tween",
+											"parameters": {
+												"tags": "\"\"",
+												"property": "offsetOpacity",
+												"end-value": "100",
+												"time": "0.3",
+												"ease": "easeinoutbounce",
+												"destroy-on-complete": "no",
+												"loop": "no",
+												"ping-pong": "no",
+												"repeat-count": "1"
+											}
+										},
+										{
+											"id": "wait-for-previous-actions",
+											"objectClass": "System",
+											"sid": 184721428117529
+										},
+										{
+											"id": "set-default-color",
+											"objectClass": "HexagonModel",
+											"sid": 206267105932695,
+											"parameters": {
+												"color": "rgbEx255(255,255,255)\n\n"
+											}
+										},
+										{
+											"id": "wait",
+											"objectClass": "System",
+											"sid": 641994472125624,
+											"parameters": {
+												"seconds": "0.1"
+											}
+										},
+										{
+											"id": "set-instvar-value",
+											"objectClass": "HexagonModel",
+											"sid": 172640658414109,
+											"parameters": {
+												"instance-variable": "selected",
+												"value": "0"
+											}
+										}
+									],
+									"sid": 673626288463298
+								}
+							]
+						}
+					],
+					"sid": 147205798127501
+				},
+				{
+					"eventType": "group",
+					"disabled": false,
+					"title": "Rotation",
+					"description": "",
+					"isActiveOnStart": true,
+					"children": [
+						{
+							"functionName": "setHexRotation",
+							"functionDescription": "",
+							"functionCategory": "",
+							"functionReturnType": "none",
+							"functionCopyPicked": false,
+							"functionIsAsync": false,
+							"functionParameters": [],
+							"eventType": "function-block",
+							"conditions": [],
+							"actions": [
+								{
+									"id": "wait",
+									"objectClass": "System",
+									"sid": 598994345230970,
+									"parameters": {
+										"seconds": "0.5"
+									}
+								}
+							],
+							"sid": 405880253922913,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "for-each",
+											"objectClass": "System",
+											"sid": 516666929168572,
+											"parameters": {
+												"object": "HexagonModel"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-rotation",
+											"objectClass": "HexagonModel",
+											"sid": 703744867972221,
+											"parameters": {
+												"x": "Self.XAngle",
+												"y": "Self.YAngle",
+												"z": "Self.ZAngle + (60 * round(random(6)))",
+												"rotation-order": "zyx"
+											}
+										}
+									],
+									"sid": 754046971770930
+								}
+							]
+						}
+					],
+					"sid": 707328285539897
+				},
+				{
+					"eventType": "group",
+					"disabled": false,
+					"title": "Create",
+					"description": "",
+					"isActiveOnStart": true,
+					"children": [
+						{
+							"eventType": "variable",
+							"name": "row",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "",
+							"isStatic": false,
+							"isConstant": false,
+							"sid": 928330666758918
+						},
+						{
+							"eventType": "variable",
+							"name": "col",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "",
+							"isStatic": false,
+							"isConstant": false,
+							"sid": 435336359686326
+						},
+						{
+							"eventType": "variable",
+							"name": "i",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "",
+							"isStatic": false,
+							"isConstant": false,
+							"sid": 508258544993927
+						},
+						{
+							"eventType": "variable",
+							"name": "from_row_to",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "",
+							"isStatic": false,
+							"isConstant": false,
+							"sid": 514747853130320
+						},
+						{
+							"functionName": "createHexGrid",
+							"functionDescription": "",
+							"functionCategory": "",
+							"functionReturnType": "none",
+							"functionCopyPicked": false,
+							"functionIsAsync": false,
+							"functionParameters": [
+								{
+									"name": "grid_size_",
+									"type": "number",
+									"initialValue": "0",
+									"comment": "",
+									"sid": 738349177615457
+								}
+							],
+							"eventType": "function-block",
+							"conditions": [],
+							"actions": [
+								{
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 405459247659996,
+									"parameters": {
+										"variable": "hex_initial_posx",
+										"value": "hex_posx"
+									}
+								}
+							],
+							"sid": 880739897362680,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "for",
+											"objectClass": "System",
+											"sid": 463859420806374,
+											"parameters": {
+												"name": "\"i\"",
+												"start-index": "0",
+												"end-index": "grid_size_"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-eventvar-value",
+											"objectClass": "System",
+											"sid": 264919496028512,
+											"parameters": {
+												"variable": "i",
+												"value": "loopindex(\"i\")"
+											}
+										}
+									],
+									"sid": 364620082335243,
+									"children": [
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "compare-two-values",
+													"objectClass": "System",
+													"sid": 745413701009760,
+													"parameters": {
+														"first-value": "i",
+														"comparison": 3,
+														"second-value": "grid_size_ / 2"
+													}
+												}
+											],
+											"actions": [],
+											"sid": 437517421122930,
+											"children": [
+												{
+													"eventType": "block",
+													"conditions": [
+														{
+															"id": "for",
+															"objectClass": "System",
+															"sid": 162852208376698,
+															"parameters": {
+																"name": "\"row\"",
+																"start-index": "0",
+																"end-index": "i + (grid_size_/2)"
+															}
+														}
+													],
+													"actions": [
+														{
+															"id": "set-eventvar-value",
+															"objectClass": "System",
+															"sid": 535593113372682,
+															"parameters": {
+																"variable": "row",
+																"value": "loopindex(\"row\")"
+															}
+														},
+														{
+															"id": "create-object",
+															"objectClass": "System",
+															"sid": 155731280197411,
+															"parameters": {
+																"object-to-create": "HexagonModel",
+																"layer": "0",
+																"x": "hex_posx  + (hex_side_length* row) ",
+																"y": "hex_posy ",
+																"create-hierarchy": false,
+																"template-name": "\"\""
+															}
+														},
+														{
+															"id": "set-instvar-value",
+															"objectClass": "HexagonModel",
+															"sid": 516291164612991,
+															"parameters": {
+																"instance-variable": "hex_index",
+																"value": "hex_create_count"
+															}
+														},
+														{
+															"id": "add-to-eventvar",
+															"objectClass": "System",
+															"sid": 507211818901738,
+															"parameters": {
+																"variable": "hex_create_count",
+																"value": "1"
+															}
+														}
+													],
+													"sid": 611652829940136,
+													"children": [
+														{
+															"eventType": "block",
+															"conditions": [
+																{
+																	"id": "compare-instance-variable",
+																	"objectClass": "HexagonModel",
+																	"sid": 118577201953596,
+																	"parameters": {
+																		"instance-variable": "hex_index",
+																		"comparison": 0,
+																		"value": "45"
+																	}
+																}
+															],
+															"actions": [
+																{
+																	"id": "set-eventvar-value",
+																	"objectClass": "System",
+																	"sid": 233511542095984,
+																	"parameters": {
+																		"variable": "initial_player_x",
+																		"value": "HexagonModel.X"
+																	}
+																},
+																{
+																	"id": "set-eventvar-value",
+																	"objectClass": "System",
+																	"sid": 888030380302902,
+																	"parameters": {
+																		"variable": "initial_player_y",
+																		"value": "HexagonModel.Y"
+																	}
+																}
+															],
+															"sid": 963107257929703
+														}
+													]
+												},
+												{
+													"eventType": "block",
+													"conditions": [],
+													"actions": [
+														{
+															"id": "add-to-eventvar",
+															"objectClass": "System",
+															"sid": 409996980739689,
+															"parameters": {
+																"variable": "hex_posy",
+																"value": "(hex_side_length - (hex_side_length/6) ) * -1"
+															}
+														},
+														{
+															"id": "add-to-eventvar",
+															"objectClass": "System",
+															"sid": 686553205826201,
+															"parameters": {
+																"variable": "hex_posx",
+																"value": "-(hex_side_length / 2) "
+															}
+														}
+													],
+													"sid": 652032121820673
+												}
+											]
+										},
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "compare-two-values",
+													"objectClass": "System",
+													"sid": 324745917502232,
+													"parameters": {
+														"first-value": "i",
+														"comparison": 4,
+														"second-value": "grid_size_ / 2"
+													}
+												}
+											],
+											"actions": [
+												{
+													"id": "set-eventvar-value",
+													"objectClass": "System",
+													"sid": 678910163119944,
+													"parameters": {
+														"variable": "from_row_to",
+														"value": "(grid_size_ - i) + (grid_size_/ 2)"
+													}
+												},
+												{
+													"id": "set-eventvar-value",
+													"objectClass": "System",
+													"sid": 756742736929413,
+													"parameters": {
+														"variable": "hex_posx",
+														"value": "hex_initial_posx - ( ( grid_size_ - i ) * (  hex_side_length / 2 ) )"
+													}
+												}
+											],
+											"sid": 518535113281651,
+											"children": [
+												{
+													"eventType": "block",
+													"conditions": [
+														{
+															"id": "for",
+															"objectClass": "System",
+															"sid": 953423003127664,
+															"parameters": {
+																"name": "\"row\"",
+																"start-index": "0",
+																"end-index": "from_row_to"
+															}
+														}
+													],
+													"actions": [
+														{
+															"id": "set-eventvar-value",
+															"objectClass": "System",
+															"sid": 711530269705651,
+															"parameters": {
+																"variable": "row",
+																"value": "loopindex(\"row\")"
+															}
+														},
+														{
+															"id": "create-object",
+															"objectClass": "System",
+															"sid": 495191200570817,
+															"parameters": {
+																"object-to-create": "HexagonModel",
+																"layer": "0",
+																"x": "hex_posx  + (hex_side_length* row)",
+																"y": "hex_posy",
+																"create-hierarchy": false,
+																"template-name": "\"\""
+															}
+														},
+														{
+															"id": "set-instvar-value",
+															"objectClass": "HexagonModel",
+															"sid": 129000213782446,
+															"parameters": {
+																"instance-variable": "hex_index",
+																"value": "hex_create_count"
+															}
+														},
+														{
+															"id": "add-to-eventvar",
+															"objectClass": "System",
+															"sid": 597145604178325,
+															"parameters": {
+																"variable": "hex_create_count",
+																"value": "1"
+															}
+														}
+													],
+													"sid": 550362263656459
+												},
+												{
+													"eventType": "block",
+													"conditions": [],
+													"actions": [
+														{
+															"id": "add-to-eventvar",
+															"objectClass": "System",
+															"sid": 675404117929960,
+															"disabled": true,
+															"parameters": {
+																"variable": "hex_posy",
+																"value": "hex_side_length - (hex_side_length/6)"
+															}
+														},
+														{
+															"id": "add-to-eventvar",
+															"objectClass": "System",
+															"sid": 660366120812644,
+															"parameters": {
+																"variable": "hex_posy",
+																"value": "(hex_side_length - (hex_side_length/6) ) * -1"
+															}
+														},
+														{
+															"id": "add-to-eventvar",
+															"objectClass": "System",
+															"sid": 508048349804490,
+															"parameters": {
+																"variable": "hex_posx",
+																"value": "-(hex_side_length / 2)"
+															}
+														}
+													],
+													"sid": 563320125935515
+												}
+											]
+										},
+										{
+											"eventType": "block",
+											"conditions": [],
+											"actions": [
+												{
+													"id": "wait-for-previous-actions",
+													"objectClass": "System",
+													"sid": 425210507580225
+												},
+												{
+													"id": "wait",
+													"objectClass": "System",
+													"sid": 555734019432548,
+													"parameters": {
+														"seconds": "0.2"
+													}
+												},
+												{
+													"callFunction": "setHexRotation",
+													"sid": 273585477551794
+												},
+												{
+													"id": "wait",
+													"objectClass": "System",
+													"sid": 990709264039728,
+													"parameters": {
+														"seconds": "0.2"
+													}
+												},
+												{
+													"id": "set-boolean-eventvar",
+													"objectClass": "System",
+													"sid": 504797594103462,
+													"parameters": {
+														"variable": "ground_created",
+														"value": "true"
+													}
+												}
+											],
+											"sid": 162295605791797
+										}
+									]
+								}
+							]
+						}
+					],
+					"sid": 110099989906942
+				},
+				{
+					"eventType": "group",
+					"disabled": false,
+					"title": "HexCollision",
+					"description": "",
+					"isActiveOnStart": true,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "is-overlapping-another-object",
+									"objectClass": "Player",
+									"sid": 618176679627963,
+									"parameters": {
+										"object": "HexagonModel"
+									}
+								},
+								{
+									"id": "compare-eventvar",
+									"objectClass": "System",
+									"sid": 929625322409562,
+									"parameters": {
+										"variable": "buff_type",
+										"comparison": 0,
+										"value": "1"
+									},
+									"isInverted": true
+								}
+							],
+							"actions": [],
+							"sid": 616593460807546,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-instance-variable",
+											"objectClass": "HexagonModel",
+											"sid": 130986708518590,
+											"parameters": {
+												"instance-variable": "active",
+												"comparison": 0,
+												"value": "0"
+											}
+										},
+										{
+											"id": "compare-boolean-eventvar",
+											"objectClass": "System",
+											"sid": 902181070604970,
+											"parameters": {
+												"variable": "player_fall"
+											},
+											"isInverted": true
+										}
+									],
+									"actions": [
+										{
+											"id": "set-boolean-eventvar",
+											"objectClass": "System",
+											"sid": 152908892659316,
+											"parameters": {
+												"variable": "player_fall",
+												"value": "true"
+											}
+										},
+										{
+											"callFunction": "gameOver",
+											"sid": 538810379539782
+										}
+									],
+									"sid": 670527268351448
+								}
+							]
+						}
+					],
+					"sid": 203068614254969
+				},
+				{
+					"eventType": "group",
+					"disabled": false,
+					"title": "OffGrid",
+					"description": "",
+					"isActiveOnStart": true,
+					"children": [
+						{
+							"functionName": "setOffGrid",
+							"functionDescription": "",
+							"functionCategory": "",
+							"functionReturnType": "none",
+							"functionCopyPicked": false,
+							"functionIsAsync": false,
+							"functionParameters": [],
+							"eventType": "function-block",
+							"conditions": [],
+							"actions": [],
+							"sid": 168502070747450,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "for",
+											"objectClass": "System",
+											"sid": 993825204370122,
+											"parameters": {
+												"name": "\"off_grid\"",
+												"start-index": "0",
+												"end-index": "5"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-position",
+											"objectClass": "OffGrid_1",
+											"sid": 916022593286382,
+											"parameters": {
+												"x": "initial_player_x ",
+												"y": "initial_player_y - 165"
+											}
+										},
+										{
+											"id": "set-angle",
+											"objectClass": "OffGrid_1",
+											"sid": 407631263787106,
+											"parameters": {
+												"angle": "90"
+											}
+										},
+										{
+											"id": "set-position",
+											"objectClass": "OffGrid_2",
+											"sid": 821502446904299,
+											"parameters": {
+												"x": "initial_player_x ",
+												"y": "initial_player_y  +165"
+											}
+										},
+										{
+											"id": "set-angle",
+											"objectClass": "OffGrid_2",
+											"sid": 292079070304206,
+											"parameters": {
+												"angle": "90"
+											}
+										},
+										{
+											"id": "set-position",
+											"objectClass": "OffGrid_3",
+											"sid": 115874791818323,
+											"parameters": {
+												"x": "initial_player_x +145",
+												"y": "initial_player_y  +85"
+											}
+										},
+										{
+											"id": "set-angle",
+											"objectClass": "OffGrid_3",
+											"sid": 783207315825317,
+											"parameters": {
+												"angle": "32"
+											}
+										},
+										{
+											"id": "set-position",
+											"objectClass": "OffGrid_4",
+											"sid": 120261155367136,
+											"parameters": {
+												"x": "initial_player_x -145",
+												"y": "initial_player_y  - 85"
+											}
+										},
+										{
+											"id": "set-angle",
+											"objectClass": "OffGrid_4",
+											"sid": 560667058264023,
+											"parameters": {
+												"angle": "32"
+											}
+										},
+										{
+											"id": "set-position",
+											"objectClass": "OffGrid_5",
+											"sid": 529310725754273,
+											"parameters": {
+												"x": "initial_player_x  +145",
+												"y": "initial_player_y  - 85"
+											}
+										},
+										{
+											"id": "set-angle",
+											"objectClass": "OffGrid_5",
+											"sid": 279592146058817,
+											"parameters": {
+												"angle": "148"
+											}
+										},
+										{
+											"id": "set-position",
+											"objectClass": "OffGrid_6",
+											"sid": 763488070264339,
+											"parameters": {
+												"x": "initial_player_x  -145",
+												"y": "initial_player_y  + 85"
+											}
+										},
+										{
+											"id": "set-angle",
+											"objectClass": "OffGrid_6",
+											"sid": 983881579714858,
+											"parameters": {
+												"angle": "148"
+											}
+										}
+									],
+									"sid": 909669053845760
+								}
+							]
+						},
+						{
+							"eventType": "group",
+							"disabled": false,
+							"title": "OffGridContact",
+							"description": "",
+							"isActiveOnStart": true,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "on-collision-with-another-object",
+											"objectClass": "Player",
+											"sid": 775050820176371,
+											"parameters": {
+												"object": "OffGrid_1"
+											}
+										},
+										{
+											"id": "on-collision-with-another-object",
+											"objectClass": "Player",
+											"sid": 194577794319472,
+											"parameters": {
+												"object": "OffGrid_2"
+											}
+										},
+										{
+											"id": "on-collision-with-another-object",
+											"objectClass": "Player",
+											"sid": 228971764665549,
+											"parameters": {
+												"object": "OffGrid_3"
+											}
+										},
+										{
+											"id": "on-collision-with-another-object",
+											"objectClass": "Player",
+											"sid": 422908480910347,
+											"parameters": {
+												"object": "OffGrid_4"
+											}
+										},
+										{
+											"id": "on-collision-with-another-object",
+											"objectClass": "Player",
+											"sid": 174476342022507,
+											"parameters": {
+												"object": "OffGrid_5"
+											}
+										},
+										{
+											"id": "on-collision-with-another-object",
+											"objectClass": "Player",
+											"sid": 433096288740076,
+											"parameters": {
+												"object": "OffGrid_6"
+											}
+										}
+									],
+									"actions": [],
+									"sid": 882027131388720,
+									"children": [
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "compare-boolean-eventvar",
+													"objectClass": "System",
+													"sid": 288333123596812,
+													"parameters": {
+														"variable": "player_fall"
+													},
+													"isInverted": true
+												}
+											],
+											"actions": [
+												{
+													"id": "set-boolean-eventvar",
+													"objectClass": "System",
+													"sid": 149294185693467,
+													"parameters": {
+														"variable": "player_fall",
+														"value": "true"
+													}
+												},
+												{
+													"callFunction": "gameOver",
+													"sid": 661220067814924
+												}
+											],
+											"sid": 979264278866836
+										}
+									],
+									"isOrBlock": true
+								}
+							],
+							"sid": 894175912449896
+						}
+					],
+					"sid": 955514413845938
+				},
+				{
+					"eventType": "group",
+					"disabled": false,
+					"title": "ResetGround",
+					"description": "",
+					"isActiveOnStart": true,
+					"children": [
+						{
+							"functionName": "resetGround",
+							"functionDescription": "",
+							"functionCategory": "",
+							"functionReturnType": "none",
+							"functionCopyPicked": false,
+							"functionIsAsync": false,
+							"functionParameters": [],
+							"eventType": "function-block",
+							"conditions": [],
+							"actions": [],
+							"sid": 334384405374450,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "for-each",
+											"objectClass": "System",
+											"sid": 976647174858828,
+											"parameters": {
+												"object": "HexagonModel"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "stop-all-tweens",
+											"objectClass": "HexagonModel",
+											"sid": 571263229608648,
+											"behaviorType": "Tween"
+										},
+										{
+											"id": "set-default-color",
+											"objectClass": "HexagonModel",
+											"sid": 121367835679566,
+											"parameters": {
+												"color": "rgbEx255(255,255,255)\n\n"
+											}
+										},
+										{
+											"id": "set-scale",
+											"objectClass": "HexagonModel",
+											"sid": 656958159781791,
+											"parameters": {
+												"scale": "1"
+											}
+										},
+										{
+											"id": "set-opacity",
+											"objectClass": "HexagonModel",
+											"sid": 389518614615204,
+											"parameters": {
+												"opacity": "100"
+											}
+										},
+										{
+											"id": "set-instvar-value",
+											"objectClass": "HexagonModel",
+											"sid": 683557495237828,
+											"parameters": {
+												"instance-variable": "selected",
+												"value": "0"
+											}
+										},
+										{
+											"id": "set-instvar-value",
+											"objectClass": "HexagonModel",
+											"sid": 348390668432608,
+											"parameters": {
+												"instance-variable": "active",
+												"value": "1"
+											}
+										}
+									],
+									"sid": 248009986202626
+								}
+							]
+						}
+					],
+					"sid": 802937274564040
+				}
+			],
+			"sid": 702624421976719
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "Player",
+			"description": "",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"eventType": "group",
+					"disabled": false,
+					"title": "PlayerMove",
+					"description": "",
+					"isActiveOnStart": true,
+					"children": [
+						{
+							"eventType": "group",
+							"disabled": false,
+							"title": "Keyboard",
+							"description": "",
+							"isActiveOnStart": true,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "key-is-down",
+											"objectClass": "Keyboard",
+											"sid": 751313735299204,
+											"parameters": {
+												"key": 38
+											}
+										},
+										{
+											"id": "key-is-down",
+											"objectClass": "Keyboard",
+											"sid": 124224459677514,
+											"parameters": {
+												"key": 39
+											}
+										},
+										{
+											"id": "key-is-down",
+											"objectClass": "Keyboard",
+											"sid": 883828990777398,
+											"parameters": {
+												"key": 40
+											}
+										},
+										{
+											"id": "key-is-down",
+											"objectClass": "Keyboard",
+											"sid": 165649506732968,
+											"parameters": {
+												"key": 37
+											}
+										}
+									],
+									"actions": [],
+									"sid": 627123408835642,
+									"children": [
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "compare-boolean-eventvar",
+													"objectClass": "System",
+													"sid": 659298374429616,
+													"parameters": {
+														"variable": "game_ended"
+													},
+													"isInverted": true
+												},
+												{
+													"id": "compare-boolean-eventvar",
+													"objectClass": "System",
+													"sid": 327323157226377,
+													"parameters": {
+														"variable": "game_started"
+													}
+												},
+												{
+													"id": "compare-eventvar",
+													"objectClass": "System",
+													"sid": 728952751511300,
+													"parameters": {
+														"variable": "input_device",
+														"comparison": 0,
+														"value": "\"desktop\""
+													}
+												}
+											],
+											"actions": [
+												{
+													"id": "set-eventvar-value",
+													"objectClass": "System",
+													"sid": 296557796849116,
+													"parameters": {
+														"variable": "input_type",
+														"value": "\"keyboard\""
+													}
+												}
+											],
+											"sid": 678122453565937,
+											"children": [
+												{
+													"eventType": "block",
+													"conditions": [
+														{
+															"id": "key-is-down",
+															"objectClass": "Keyboard",
+															"sid": 747386131114741,
+															"parameters": {
+																"key": 39
+															}
+														}
+													],
+													"actions": [
+														{
+															"id": "simulate-control",
+															"objectClass": "Player",
+															"sid": 594312840329868,
+															"behaviorType": "8Direction",
+															"parameters": {
+																"control": "up"
+															}
+														}
+													],
+													"sid": 499987757007845
+												},
+												{
+													"eventType": "block",
+													"conditions": [
+														{
+															"id": "key-is-down",
+															"objectClass": "Keyboard",
+															"sid": 962801812700030,
+															"parameters": {
+																"key": 38
+															}
+														}
+													],
+													"actions": [
+														{
+															"id": "simulate-control",
+															"objectClass": "Player",
+															"sid": 943448595033136,
+															"behaviorType": "8Direction",
+															"parameters": {
+																"control": "left"
+															}
+														}
+													],
+													"sid": 571724752052312
+												},
+												{
+													"eventType": "block",
+													"conditions": [
+														{
+															"id": "key-is-down",
+															"objectClass": "Keyboard",
+															"sid": 582624292456507,
+															"parameters": {
+																"key": 40
+															}
+														}
+													],
+													"actions": [
+														{
+															"id": "simulate-control",
+															"objectClass": "Player",
+															"sid": 298487425005540,
+															"behaviorType": "8Direction",
+															"parameters": {
+																"control": "right"
+															}
+														}
+													],
+													"sid": 543656842632015
+												},
+												{
+													"eventType": "block",
+													"conditions": [
+														{
+															"id": "key-is-down",
+															"objectClass": "Keyboard",
+															"sid": 674855140955547,
+															"parameters": {
+																"key": 37
+															}
+														}
+													],
+													"actions": [
+														{
+															"id": "simulate-control",
+															"objectClass": "Player",
+															"sid": 336045867210008,
+															"behaviorType": "8Direction",
+															"parameters": {
+																"control": "down"
+															}
+														}
+													],
+													"sid": 821389272980670
+												}
+											]
+										}
+									],
+									"isOrBlock": true
+								}
+							],
+							"sid": 722341379713623
+						},
+						{
+							"eventType": "group",
+							"disabled": false,
+							"title": "Joystick",
+							"description": "",
+							"isActiveOnStart": true,
+							"children": [
+								{
+									"eventType": "group",
+									"disabled": false,
+									"title": "Mouse",
+									"description": "",
+									"isActiveOnStart": true,
+									"children": [
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "is-dragging",
+													"objectClass": "JoystickDrag",
+													"sid": 111759849398045,
+													"behaviorType": "DragDrop"
+												},
+												{
+													"id": "compare-boolean-eventvar",
+													"objectClass": "System",
+													"sid": 169019225487713,
+													"parameters": {
+														"variable": "game_started"
+													}
+												},
+												{
+													"id": "compare-boolean-eventvar",
+													"objectClass": "System",
+													"sid": 360912449401222,
+													"parameters": {
+														"variable": "game_ended"
+													},
+													"isInverted": true
+												},
+												{
+													"id": "compare-eventvar",
+													"objectClass": "System",
+													"sid": 741133966381887,
+													"parameters": {
+														"variable": "input_type",
+														"comparison": 0,
+														"value": "\"keyboard\""
+													},
+													"isInverted": true
+												},
+												{
+													"id": "compare-eventvar",
+													"objectClass": "System",
+													"sid": 964038042855108,
+													"parameters": {
+														"variable": "input_device",
+														"comparison": 0,
+														"value": "\"desktop\""
+													}
+												}
+											],
+											"actions": [
+												{
+													"id": "set-visible",
+													"objectClass": "Joystick",
+													"sid": 575609675108364,
+													"parameters": {
+														"visibility": "visible"
+													}
+												},
+												{
+													"id": "set-instvar-value",
+													"objectClass": "JoystickSprite",
+													"sid": 569106521544398,
+													"parameters": {
+														"instance-variable": "joystick_distance",
+														"value": "min(120 ,distance(JoystickBg.X,JoystickBg.Y, JoystickDrag.X, JoystickDrag.Y))"
+													}
+												},
+												{
+													"id": "set-position",
+													"objectClass": "JoystickSprite",
+													"sid": 933996447820746,
+													"parameters": {
+														"x": "(cos(angle(JoystickBg.X,JoystickBg.Y,JoystickDrag.X, JoystickDrag.Y)) * Self.joystick_distance) + JoystickBg.X",
+														"y": "(sin(angle(JoystickBg.X,JoystickBg.Y,JoystickDrag.X, JoystickDrag.Y)) * Self.joystick_distance) + JoystickBg.Y"
+													}
+												},
+												{
+													"id": "set-vector-x",
+													"objectClass": "Player",
+													"sid": 628057628535511,
+													"behaviorType": "8Direction",
+													"parameters": {
+														"vector-x": "((JoystickSprite.Y - JoystickBg.Y) + 20) * reverse_dir"
+													}
+												},
+												{
+													"id": "set-vector-y",
+													"objectClass": "Player",
+													"sid": 917995140216487,
+													"behaviorType": "8Direction",
+													"parameters": {
+														"vector-y": "((JoystickSprite.X  - JoystickBg.X)* -1) * reverse_dir"
+													}
+												},
+												{
+													"id": "set-speed",
+													"objectClass": "Player",
+													"sid": 977928849625680,
+													"disabled": true,
+													"behaviorType": "8Direction",
+													"parameters": {
+														"speed": "JoystickSprite.joystick_distance"
+													}
+												}
+											],
+											"sid": 520439157422005
+										},
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "else",
+													"objectClass": "System",
+													"sid": 568632371307507
+												},
+												{
+													"id": "compare-eventvar",
+													"objectClass": "System",
+													"sid": 351016286713370,
+													"parameters": {
+														"variable": "input_device",
+														"comparison": 0,
+														"value": "\"desktop\""
+													}
+												}
+											],
+											"actions": [
+												{
+													"id": "set-position",
+													"objectClass": "JoystickBg",
+													"sid": 856757817315477,
+													"parameters": {
+														"x": "Mouse.X(\"UI\")",
+														"y": "Mouse.Y(\"UI\")"
+													}
+												},
+												{
+													"id": "set-position",
+													"objectClass": "JoystickSprite",
+													"sid": 353258806950268,
+													"parameters": {
+														"x": "JoystickBg.X",
+														"y": "JoystickBg.Y"
+													}
+												},
+												{
+													"id": "set-position",
+													"objectClass": "JoystickDrag",
+													"sid": 734201263469996,
+													"parameters": {
+														"x": "JoystickBg.X",
+														"y": "JoystickBg.Y"
+													}
+												},
+												{
+													"id": "set-visible",
+													"objectClass": "Joystick",
+													"sid": 314416330028632,
+													"parameters": {
+														"visibility": "invisible"
+													}
+												}
+											],
+											"sid": 712727647325890
+										}
+									],
+									"sid": 265153648279884
+								},
+								{
+									"eventType": "group",
+									"disabled": false,
+									"title": "Touch",
+									"description": "",
+									"isActiveOnStart": true,
+									"children": [
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "on-nth-touch-start",
+													"objectClass": "Touch",
+													"sid": 956982634887441,
+													"parameters": {
+														"touch-number": "0"
+													}
+												},
+												{
+													"id": "compare-boolean-eventvar",
+													"objectClass": "System",
+													"sid": 189913455213413,
+													"parameters": {
+														"variable": "game_started"
+													}
+												},
+												{
+													"id": "compare-boolean-eventvar",
+													"objectClass": "System",
+													"sid": 464976578168824,
+													"parameters": {
+														"variable": "game_ended"
+													},
+													"isInverted": true
+												}
+											],
+											"actions": [
+												{
+													"id": "set-position",
+													"objectClass": "JoystickBg",
+													"sid": 729429481207109,
+													"parameters": {
+														"x": "Touch.X(\"UI\")",
+														"y": "Touch.Y(\"UI\")"
+													}
+												},
+												{
+													"id": "set-position",
+													"objectClass": "JoystickSprite",
+													"sid": 368610942231605,
+													"parameters": {
+														"x": "JoystickBg.X",
+														"y": "JoystickBg.Y"
+													}
+												},
+												{
+													"id": "set-position",
+													"objectClass": "JoystickDrag",
+													"sid": 761338399582071,
+													"parameters": {
+														"x": "JoystickBg.X",
+														"y": "JoystickBg.Y"
+													}
+												},
+												{
+													"id": "set-visible",
+													"objectClass": "Joystick",
+													"sid": 204803146682219,
+													"parameters": {
+														"visibility": "visible"
+													}
+												}
+											],
+											"sid": 351677673793008
+										},
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "is-dragging",
+													"objectClass": "JoystickDrag",
+													"sid": 959321709849255,
+													"behaviorType": "DragDrop"
+												},
+												{
+													"id": "compare-boolean-eventvar",
+													"objectClass": "System",
+													"sid": 356645441430914,
+													"parameters": {
+														"variable": "game_started"
+													}
+												},
+												{
+													"id": "compare-boolean-eventvar",
+													"objectClass": "System",
+													"sid": 477728073173037,
+													"parameters": {
+														"variable": "game_ended"
+													},
+													"isInverted": true
+												},
+												{
+													"id": "compare-eventvar",
+													"objectClass": "System",
+													"sid": 990044124088414,
+													"parameters": {
+														"variable": "input_device",
+														"comparison": 0,
+														"value": "\"desktop\""
+													},
+													"isInverted": true
+												}
+											],
+											"actions": [
+												{
+													"id": "set-speed",
+													"objectClass": "Player",
+													"sid": 703690753472294,
+													"disabled": true,
+													"behaviorType": "8Direction",
+													"parameters": {
+														"speed": "JoystickSprite.joystick_distance"
+													}
+												}
+											],
+											"sid": 835033899703490,
+											"children": [
+												{
+													"eventType": "block",
+													"conditions": [],
+													"actions": [
+														{
+															"id": "set-visible",
+															"objectClass": "Joystick",
+															"sid": 613478656707385,
+															"parameters": {
+																"visibility": "visible"
+															}
+														},
+														{
+															"id": "set-instvar-value",
+															"objectClass": "JoystickSprite",
+															"sid": 174502082564650,
+															"parameters": {
+																"instance-variable": "joystick_distance",
+																"value": "min(120 ,distance(JoystickBg.X,JoystickBg.Y, JoystickDrag.X, JoystickDrag.Y))"
+															}
+														},
+														{
+															"id": "set-position",
+															"objectClass": "JoystickSprite",
+															"sid": 255192058307777,
+															"parameters": {
+																"x": "(cos(angle(JoystickBg.X,JoystickBg.Y,JoystickDrag.X, JoystickDrag.Y)) * Self.joystick_distance) + JoystickBg.X",
+																"y": "(sin(angle(JoystickBg.X,JoystickBg.Y,JoystickDrag.X, JoystickDrag.Y)) * Self.joystick_distance) + JoystickBg.Y"
+															}
+														},
+														{
+															"id": "set-vector-x",
+															"objectClass": "Player",
+															"sid": 828702117017872,
+															"behaviorType": "8Direction",
+															"parameters": {
+																"vector-x": "((JoystickSprite.Y - JoystickBg.Y) + 20) * reverse_dir"
+															}
+														},
+														{
+															"id": "set-vector-y",
+															"objectClass": "Player",
+															"sid": 333821986257161,
+															"behaviorType": "8Direction",
+															"parameters": {
+																"vector-y": "((JoystickSprite.X  - JoystickBg.X)* -1) * reverse_dir"
+															}
+														}
+													],
+													"sid": 562123847525551
+												}
+											]
+										},
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "on-drop",
+													"objectClass": "JoystickDrag",
+													"sid": 262685296376347,
+													"behaviorType": "DragDrop"
+												},
+												{
+													"id": "compare-eventvar",
+													"objectClass": "System",
+													"sid": 133913770191843,
+													"parameters": {
+														"variable": "input_device",
+														"comparison": 0,
+														"value": "\"desktop\""
+													},
+													"isInverted": true
+												}
+											],
+											"actions": [
+												{
+													"id": "set-visible",
+													"objectClass": "Joystick",
+													"sid": 725600019634545,
+													"parameters": {
+														"visibility": "invisible"
+													}
+												}
+											],
+											"sid": 591104967480075
+										}
+									],
+									"sid": 274480267801448
+								}
+							],
+							"sid": 332870471885807
+						}
+					],
+					"sid": 669782897735770
+				},
+				{
+					"eventType": "group",
+					"disabled": false,
+					"title": "PlayerFall",
+					"description": "",
+					"isActiveOnStart": true,
+					"children": [
+						{
+							"functionName": "playerFall",
+							"functionDescription": "",
+							"functionCategory": "",
+							"functionReturnType": "none",
+							"functionCopyPicked": false,
+							"functionIsAsync": false,
+							"functionParameters": [],
+							"eventType": "function-block",
+							"conditions": [],
+							"actions": [],
+							"sid": 891249346062909,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-boolean-eventvar",
+											"objectClass": "System",
+											"sid": 399789705652837,
+											"parameters": {
+												"variable": "player_fall"
+											}
+										}
+									],
+									"actions": [],
+									"sid": 135255842749156,
+									"children": [
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "compare-two-values",
+													"objectClass": "System",
+													"sid": 815207575301477,
+													"parameters": {
+														"first-value": "Player.ZElevation ",
+														"comparison": 4,
+														"second-value": "-40"
+													}
+												}
+											],
+											"actions": [
+												{
+													"id": "set-z-elevation",
+													"objectClass": "Player",
+													"sid": 252600010053152,
+													"parameters": {
+														"z": "Self.ZElevation - (dt * player_fall_speed)"
+													}
+												},
+												{
+													"id": "set-z-elevation",
+													"objectClass": "PlayerDuckModel",
+													"sid": 257915862154032,
+													"parameters": {
+														"z": "Self.ZElevation - (dt * player_fall_speed)"
+													}
+												}
+											],
+											"sid": 272380332036263
+										}
+									]
+								}
+							]
+						}
+					],
+					"sid": 934900599659355
+				},
+				{
+					"eventType": "group",
+					"disabled": false,
+					"title": "PlayerReset",
+					"description": "",
+					"isActiveOnStart": true,
+					"children": [
+						{
+							"functionName": "resetPlayer",
+							"functionDescription": "",
+							"functionCategory": "",
+							"functionReturnType": "none",
+							"functionCopyPicked": false,
+							"functionIsAsync": false,
+							"functionParameters": [],
+							"eventType": "function-block",
+							"conditions": [],
+							"actions": [],
+							"sid": 910940043574126,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [],
+									"actions": [
+										{
+											"id": "set-boolean-eventvar",
+											"objectClass": "System",
+											"sid": 819802876648703,
+											"parameters": {
+												"variable": "player_fall",
+												"value": "false"
+											}
+										},
+										{
+											"id": "set-eventvar-value",
+											"objectClass": "System",
+											"sid": 535069823476167,
+											"parameters": {
+												"variable": "reverse_dir",
+												"value": "1"
+											}
+										},
+										{
+											"id": "set-eventvar-value",
+											"objectClass": "System",
+											"sid": 359242258064390,
+											"parameters": {
+												"variable": "player_max_speed",
+												"value": "70"
+											}
+										},
+										{
+											"id": "set-angle",
+											"objectClass": "Player",
+											"sid": 132311080481314,
+											"parameters": {
+												"angle": "0"
+											}
+										},
+										{
+											"id": "set-position",
+											"objectClass": "Player",
+											"sid": 732752557440086,
+											"parameters": {
+												"x": "initial_player_x",
+												"y": "initial_player_y"
+											}
+										},
+										{
+											"id": "set-max-speed",
+											"objectClass": "Player",
+											"sid": 949640705370960,
+											"behaviorType": "8Direction",
+											"parameters": {
+												"max-speed": "player_max_speed"
+											}
+										},
+										{
+											"id": "set-z-elevation",
+											"objectClass": "Player",
+											"sid": 660961256146184,
+											"parameters": {
+												"z": "5"
+											}
+										},
+										{
+											"id": "set-opacity",
+											"objectClass": "Player",
+											"sid": 697104410015531,
+											"parameters": {
+												"opacity": "100"
+											}
+										},
+										{
+											"id": "set-effect-enabled",
+											"objectClass": "PlayerDuckModel",
+											"sid": 924288586151737,
+											"parameters": {
+												"mode": "disable",
+												"effect": "\"Burn\""
+											}
+										},
+										{
+											"id": "set-effect-enabled",
+											"objectClass": "PlayerDuckModel",
+											"sid": 126556837030036,
+											"parameters": {
+												"mode": "disable",
+												"effect": "\"Difference\""
+											}
+										},
+										{
+											"id": "set-effect-enabled",
+											"objectClass": "PlayerDuckModel",
+											"sid": 431441215577371,
+											"parameters": {
+												"mode": "disable",
+												"effect": "\"Fogexponential\""
+											}
+										},
+										{
+											"id": "set-position",
+											"objectClass": "PlayerDuckModel",
+											"sid": 883405300848619,
+											"parameters": {
+												"x": "Player.X",
+												"y": "Player.Y"
+											}
+										},
+										{
+											"id": "set-rotation",
+											"objectClass": "PlayerDuckModel",
+											"sid": 259467355402593,
+											"parameters": {
+												"x": "0",
+												"y": "0",
+												"z": "Player.Angle  - 90",
+												"rotation-order": "zxy"
+											}
+										},
+										{
+											"id": "set-z-elevation",
+											"objectClass": "PlayerDuckModel",
+											"sid": 619134102278464,
+											"parameters": {
+												"z": "0"
+											}
+										},
+										{
+											"id": "set-opacity",
+											"objectClass": "PlayerDuckModel",
+											"sid": 502926453431969,
+											"parameters": {
+												"opacity": "100"
+											}
+										}
+									],
+									"sid": 348632407265890
+								}
+							]
+						}
+					],
+					"sid": 710201314308420
+				}
+			],
+			"sid": 644630411303091
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "UI",
+			"description": "",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"eventType": "group",
+					"disabled": false,
+					"title": "InitUI",
+					"description": "",
+					"isActiveOnStart": true,
+					"children": [
+						{
+							"eventType": "group",
+							"disabled": false,
+							"title": "InitUIMouse",
+							"description": "",
+							"isActiveOnStart": true,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "on-object-clicked",
+											"objectClass": "Mouse",
+											"sid": 627325621162112,
+											"parameters": {
+												"mouse-button": "left",
+												"click-type": "clicked",
+												"object-clicked": "PlayButtonSprite"
+											}
+										}
+									],
+									"actions": [],
+									"sid": 611799322978252,
+									"children": [
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "compare-boolean-eventvar",
+													"objectClass": "System",
+													"sid": 914626667308001,
+													"parameters": {
+														"variable": "button_clicked"
+													},
+													"isInverted": true
+												},
+												{
+													"id": "compare-boolean-eventvar",
+													"objectClass": "System",
+													"sid": 947370934188510,
+													"parameters": {
+														"variable": "loading_done"
+													}
+												},
+												{
+													"id": "compare-eventvar",
+													"objectClass": "System",
+													"sid": 696345273920823,
+													"parameters": {
+														"variable": "input_device",
+														"comparison": 0,
+														"value": "\"desktop\""
+													}
+												},
+												{
+													"id": "is-visible",
+													"objectClass": "InitialUI",
+													"sid": 541516662215082
+												}
+											],
+											"actions": [
+												{
+													"callFunction": "playButtonOnClick",
+													"sid": 504006305265266
+												}
+											],
+											"sid": 965928434115938
+										}
+									]
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "on-object-clicked",
+											"objectClass": "Mouse",
+											"sid": 811577774339015,
+											"parameters": {
+												"mouse-button": "left",
+												"click-type": "clicked",
+												"object-clicked": "TutorialButtonSprite"
+											}
+										}
+									],
+									"actions": [],
+									"sid": 445039232804821,
+									"children": [
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "compare-boolean-eventvar",
+													"objectClass": "System",
+													"sid": 841384933676059,
+													"parameters": {
+														"variable": "button_clicked"
+													},
+													"isInverted": true
+												},
+												{
+													"id": "compare-boolean-eventvar",
+													"objectClass": "System",
+													"sid": 835639935368260,
+													"parameters": {
+														"variable": "loading_done"
+													}
+												},
+												{
+													"id": "compare-eventvar",
+													"objectClass": "System",
+													"sid": 786560311031340,
+													"parameters": {
+														"variable": "input_device",
+														"comparison": 0,
+														"value": "\"desktop\""
+													}
+												},
+												{
+													"id": "is-visible",
+													"objectClass": "InitialUI",
+													"sid": 174968898879986
+												}
+											],
+											"actions": [
+												{
+													"callFunction": "tutorialButtonOnClick",
+													"sid": 687773275260568
+												}
+											],
+											"sid": 358841666670598
+										}
+									]
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "on-object-clicked",
+											"objectClass": "Mouse",
+											"sid": 259774872059702,
+											"parameters": {
+												"mouse-button": "left",
+												"click-type": "clicked",
+												"object-clicked": "SettingsButtonSprite"
+											}
+										}
+									],
+									"actions": [],
+									"sid": 653954608075067,
+									"children": [
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "compare-boolean-eventvar",
+													"objectClass": "System",
+													"sid": 640392127759854,
+													"parameters": {
+														"variable": "button_clicked"
+													},
+													"isInverted": true
+												},
+												{
+													"id": "compare-boolean-eventvar",
+													"objectClass": "System",
+													"sid": 378318999956823,
+													"parameters": {
+														"variable": "loading_done"
+													}
+												},
+												{
+													"id": "compare-eventvar",
+													"objectClass": "System",
+													"sid": 790101968252020,
+													"parameters": {
+														"variable": "input_device",
+														"comparison": 0,
+														"value": "\"desktop\""
+													}
+												},
+												{
+													"id": "is-visible",
+													"objectClass": "InitialUI",
+													"sid": 459818144402718
+												}
+											],
+											"actions": [
+												{
+													"callFunction": "settingsButtonOnClick",
+													"sid": 102242277216620
+												}
+											],
+											"sid": 235122681515934
+										}
+									]
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "on-object-clicked",
+											"objectClass": "Mouse",
+											"sid": 844040352484408,
+											"parameters": {
+												"mouse-button": "left",
+												"click-type": "clicked",
+												"object-clicked": "BackButtonSprite"
+											}
+										}
+									],
+									"actions": [],
+									"sid": 127607615158689,
+									"children": [
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "compare-boolean-eventvar",
+													"objectClass": "System",
+													"sid": 931136323528860,
+													"parameters": {
+														"variable": "button_clicked"
+													},
+													"isInverted": true
+												},
+												{
+													"id": "compare-eventvar",
+													"objectClass": "System",
+													"sid": 968600852101552,
+													"parameters": {
+														"variable": "input_device",
+														"comparison": 0,
+														"value": "\"desktop\""
+													}
+												},
+												{
+													"id": "is-visible",
+													"objectClass": "InitialUI",
+													"sid": 289212799352467,
+													"isInverted": true
+												}
+											],
+											"actions": [
+												{
+													"callFunction": "backButtonOnClick",
+													"sid": 952796304444570
+												}
+											],
+											"sid": 872156674932711
+										}
+									]
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "on-object-clicked",
+											"objectClass": "Mouse",
+											"sid": 700170520760528,
+											"parameters": {
+												"mouse-button": "left",
+												"click-type": "clicked",
+												"object-clicked": "LogoButton"
+											}
+										}
+									],
+									"actions": [],
+									"sid": 752499851411989,
+									"children": [
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "compare-boolean-eventvar",
+													"objectClass": "System",
+													"sid": 549508716990698,
+													"parameters": {
+														"variable": "button_clicked"
+													},
+													"isInverted": true
+												},
+												{
+													"id": "compare-boolean-eventvar",
+													"objectClass": "System",
+													"sid": 599895498493610,
+													"parameters": {
+														"variable": "loading_done"
+													}
+												},
+												{
+													"id": "compare-eventvar",
+													"objectClass": "System",
+													"sid": 284242240329340,
+													"parameters": {
+														"variable": "input_device",
+														"comparison": 0,
+														"value": "\"desktop\""
+													}
+												},
+												{
+													"id": "is-visible",
+													"objectClass": "InitialUI",
+													"sid": 892474593419089
+												}
+											],
+											"actions": [
+												{
+													"callFunction": "logoButtonClicked",
+													"sid": 843513474524792
+												}
+											],
+											"sid": 485255880363629
+										}
+									]
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "on-object-clicked",
+											"objectClass": "Mouse",
+											"sid": 415777942293960,
+											"parameters": {
+												"mouse-button": "left",
+												"click-type": "clicked",
+												"object-clicked": "InstagramButton"
+											}
+										}
+									],
+									"actions": [],
+									"sid": 799325517675425,
+									"children": [
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "compare-boolean-eventvar",
+													"objectClass": "System",
+													"sid": 846169936119392,
+													"parameters": {
+														"variable": "button_clicked"
+													},
+													"isInverted": true
+												},
+												{
+													"id": "compare-boolean-eventvar",
+													"objectClass": "System",
+													"sid": 329441045981886,
+													"parameters": {
+														"variable": "loading_done"
+													}
+												},
+												{
+													"id": "compare-eventvar",
+													"objectClass": "System",
+													"sid": 899663860414557,
+													"parameters": {
+														"variable": "input_device",
+														"comparison": 0,
+														"value": "\"desktop\""
+													}
+												},
+												{
+													"id": "is-visible",
+													"objectClass": "InitialUI",
+													"sid": 820308288161297
+												}
+											],
+											"actions": [
+												{
+													"callFunction": "instagramButtonClicked",
+													"sid": 665474038732849
+												}
+											],
+											"sid": 972001711490398
+										}
+									]
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "on-object-clicked",
+											"objectClass": "Mouse",
+											"sid": 406000115586395,
+											"parameters": {
+												"mouse-button": "left",
+												"click-type": "clicked",
+												"object-clicked": "GotItButtonText"
+											}
+										}
+									],
+									"actions": [],
+									"sid": 487831345761046,
+									"children": [
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "compare-boolean-eventvar",
+													"objectClass": "System",
+													"sid": 596966209819510,
+													"parameters": {
+														"variable": "button_clicked"
+													},
+													"isInverted": true
+												},
+												{
+													"id": "compare-eventvar",
+													"objectClass": "System",
+													"sid": 310483944525908,
+													"parameters": {
+														"variable": "input_device",
+														"comparison": 0,
+														"value": "\"desktop\""
+													}
+												},
+												{
+													"id": "is-visible",
+													"objectClass": "InitialUI",
+													"sid": 585358699154555,
+													"isInverted": true
+												}
+											],
+											"actions": [
+												{
+													"callFunction": "gotItButtonOnClick",
+													"sid": 487834672639346
+												}
+											],
+											"sid": 117030692739481
+										}
+									]
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "on-object-clicked",
+											"objectClass": "Mouse",
+											"sid": 274052940727239,
+											"parameters": {
+												"mouse-button": "left",
+												"click-type": "clicked",
+												"object-clicked": "SoundButtonText"
+											}
+										}
+									],
+									"actions": [],
+									"sid": 940949543403215,
+									"children": [
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "compare-boolean-eventvar",
+													"objectClass": "System",
+													"sid": 119693492144720,
+													"parameters": {
+														"variable": "button_clicked"
+													},
+													"isInverted": true
+												},
+												{
+													"id": "compare-eventvar",
+													"objectClass": "System",
+													"sid": 383917551380873,
+													"parameters": {
+														"variable": "input_device",
+														"comparison": 0,
+														"value": "\"desktop\""
+													}
+												},
+												{
+													"id": "is-visible",
+													"objectClass": "InitialUI",
+													"sid": 654761849280578,
+													"isInverted": true
+												}
+											],
+											"actions": [
+												{
+													"callFunction": "setSoundActivity",
+													"sid": 159980359612009
+												}
+											],
+											"sid": 657072945488518
+										}
+									]
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "on-object-clicked",
+											"objectClass": "Mouse",
+											"sid": 995400057067140,
+											"parameters": {
+												"mouse-button": "left",
+												"click-type": "clicked",
+												"object-clicked": "MusicButtonText"
+											}
+										}
+									],
+									"actions": [],
+									"sid": 766888752920915,
+									"children": [
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "compare-boolean-eventvar",
+													"objectClass": "System",
+													"sid": 185577545943484,
+													"parameters": {
+														"variable": "button_clicked"
+													},
+													"isInverted": true
+												},
+												{
+													"id": "compare-eventvar",
+													"objectClass": "System",
+													"sid": 530573671487118,
+													"parameters": {
+														"variable": "input_device",
+														"comparison": 0,
+														"value": "\"desktop\""
+													}
+												},
+												{
+													"id": "is-visible",
+													"objectClass": "InitialUI",
+													"sid": 382222072514191,
+													"isInverted": true
+												}
+											],
+											"actions": [
+												{
+													"callFunction": "setMusicActivity",
+													"sid": 529554363907067
+												}
+											],
+											"sid": 588767105525309
+										}
+									]
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "on-object-clicked",
+											"objectClass": "Mouse",
+											"sid": 766517951391698,
+											"parameters": {
+												"mouse-button": "left",
+												"click-type": "clicked",
+												"object-clicked": "VibrateButtonText"
+											}
+										}
+									],
+									"actions": [],
+									"sid": 284155276474504,
+									"children": [
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "compare-boolean-eventvar",
+													"objectClass": "System",
+													"sid": 184353068555520,
+													"parameters": {
+														"variable": "button_clicked"
+													},
+													"isInverted": true
+												},
+												{
+													"id": "compare-eventvar",
+													"objectClass": "System",
+													"sid": 761251206309032,
+													"parameters": {
+														"variable": "input_device",
+														"comparison": 0,
+														"value": "\"desktop\""
+													}
+												},
+												{
+													"id": "is-visible",
+													"objectClass": "InitialUI",
+													"sid": 271237720703246,
+													"isInverted": true
+												}
+											],
+											"actions": [
+												{
+													"callFunction": "setVibrate",
+													"sid": 962905736619057
+												}
+											],
+											"sid": 886005646289216
+										}
+									]
+								}
+							],
+							"sid": 542155776045773
+						},
+						{
+							"eventType": "group",
+							"disabled": false,
+							"title": "InitUITouch",
+							"description": "",
+							"isActiveOnStart": true,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "on-tap-object",
+											"objectClass": "Touch",
+											"sid": 451261179322538,
+											"parameters": {
+												"object": "PlayButtonSprite"
+											}
+										}
+									],
+									"actions": [],
+									"sid": 452499917271979,
+									"children": [
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "compare-boolean-eventvar",
+													"objectClass": "System",
+													"sid": 913649630218950,
+													"parameters": {
+														"variable": "button_clicked"
+													},
+													"isInverted": true
+												},
+												{
+													"id": "compare-boolean-eventvar",
+													"objectClass": "System",
+													"sid": 343482083343818,
+													"parameters": {
+														"variable": "loading_done"
+													}
+												},
+												{
+													"id": "is-visible",
+													"objectClass": "InitialUI",
+													"sid": 707378916720147
+												}
+											],
+											"actions": [
+												{
+													"callFunction": "playButtonOnClick",
+													"sid": 531918872009769
+												}
+											],
+											"sid": 252867383769521
+										}
+									]
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "on-tap-object",
+											"objectClass": "Touch",
+											"sid": 475712692665870,
+											"parameters": {
+												"object": "TutorialButtonSprite"
+											}
+										}
+									],
+									"actions": [],
+									"sid": 453841393155606,
+									"children": [
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "compare-eventvar",
+													"objectClass": "System",
+													"sid": 100789129957036,
+													"disabled": true,
+													"parameters": {
+														"variable": "input_device",
+														"comparison": 0,
+														"value": "\"desktop\""
+													},
+													"isInverted": true
+												},
+												{
+													"id": "compare-boolean-eventvar",
+													"objectClass": "System",
+													"sid": 370990908031903,
+													"parameters": {
+														"variable": "loading_done"
+													}
+												},
+												{
+													"id": "compare-boolean-eventvar",
+													"objectClass": "System",
+													"sid": 219492579005308,
+													"parameters": {
+														"variable": "button_clicked"
+													},
+													"isInverted": true
+												},
+												{
+													"id": "is-visible",
+													"objectClass": "InitialUI",
+													"sid": 644016643982266
+												}
+											],
+											"actions": [
+												{
+													"callFunction": "tutorialButtonOnClick",
+													"sid": 340368942996340
+												}
+											],
+											"sid": 499058028633289
+										}
+									]
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "on-tap-object",
+											"objectClass": "Touch",
+											"sid": 194667153343446,
+											"parameters": {
+												"object": "GotItButtonText"
+											}
+										}
+									],
+									"actions": [],
+									"sid": 326334643208823,
+									"children": [
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "compare-boolean-eventvar",
+													"objectClass": "System",
+													"sid": 119252738344488,
+													"parameters": {
+														"variable": "button_clicked"
+													},
+													"isInverted": true
+												},
+												{
+													"id": "is-visible",
+													"objectClass": "InitialUI",
+													"sid": 581317891451303,
+													"isInverted": true
+												}
+											],
+											"actions": [
+												{
+													"callFunction": "gotItButtonOnClick",
+													"sid": 356233049259626
+												}
+											],
+											"sid": 643053555681074
+										}
+									]
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "on-tap-object",
+											"objectClass": "Touch",
+											"sid": 468766973549603,
+											"parameters": {
+												"object": "SettingsButtonSprite"
+											}
+										}
+									],
+									"actions": [],
+									"sid": 383027595528377,
+									"children": [
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "compare-boolean-eventvar",
+													"objectClass": "System",
+													"sid": 401707913375684,
+													"parameters": {
+														"variable": "button_clicked"
+													},
+													"isInverted": true
+												},
+												{
+													"id": "compare-boolean-eventvar",
+													"objectClass": "System",
+													"sid": 199127571532351,
+													"parameters": {
+														"variable": "loading_done"
+													}
+												},
+												{
+													"id": "is-visible",
+													"objectClass": "InitialUI",
+													"sid": 654346586401703
+												}
+											],
+											"actions": [
+												{
+													"callFunction": "settingsButtonOnClick",
+													"sid": 943711691974423
+												}
+											],
+											"sid": 920348050203571
+										}
+									]
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "on-tap-object",
+											"objectClass": "Touch",
+											"sid": 917563620061204,
+											"parameters": {
+												"object": "BackButtonSprite"
+											}
+										}
+									],
+									"actions": [],
+									"sid": 287372411831520,
+									"children": [
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "compare-boolean-eventvar",
+													"objectClass": "System",
+													"sid": 361229321808078,
+													"parameters": {
+														"variable": "button_clicked"
+													},
+													"isInverted": true
+												},
+												{
+													"id": "is-visible",
+													"objectClass": "InitialUI",
+													"sid": 446531330649277,
+													"isInverted": true
+												}
+											],
+											"actions": [
+												{
+													"callFunction": "backButtonOnClick",
+													"sid": 492398576719423
+												}
+											],
+											"sid": 420658454111423
+										}
+									]
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "on-tap-object",
+											"objectClass": "Touch",
+											"sid": 417331752950545,
+											"parameters": {
+												"object": "LogoButton"
+											}
+										},
+										{
+											"id": "compare-boolean-eventvar",
+											"objectClass": "System",
+											"sid": 996825142248901,
+											"parameters": {
+												"variable": "loading_done"
+											}
+										}
+									],
+									"actions": [],
+									"sid": 886139091920640,
+									"children": [
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "compare-boolean-eventvar",
+													"objectClass": "System",
+													"sid": 687132312655367,
+													"parameters": {
+														"variable": "button_clicked"
+													},
+													"isInverted": true
+												},
+												{
+													"id": "is-visible",
+													"objectClass": "InitialUI",
+													"sid": 712555367933002
+												}
+											],
+											"actions": [
+												{
+													"callFunction": "logoButtonClicked",
+													"sid": 260421424334791
+												}
+											],
+											"sid": 213594828226598
+										}
+									]
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "on-tap-object",
+											"objectClass": "Touch",
+											"sid": 805625592183540,
+											"parameters": {
+												"object": "InstagramButton"
+											}
+										}
+									],
+									"actions": [],
+									"sid": 243035424662240,
+									"children": [
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "compare-boolean-eventvar",
+													"objectClass": "System",
+													"sid": 929053370753321,
+													"parameters": {
+														"variable": "button_clicked"
+													},
+													"isInverted": true
+												},
+												{
+													"id": "compare-boolean-eventvar",
+													"objectClass": "System",
+													"sid": 822663617417801,
+													"parameters": {
+														"variable": "loading_done"
+													}
+												},
+												{
+													"id": "is-visible",
+													"objectClass": "InitialUI",
+													"sid": 419022156543526
+												}
+											],
+											"actions": [
+												{
+													"callFunction": "instagramButtonClicked",
+													"sid": 108455229211835
+												}
+											],
+											"sid": 199146173461285
+										}
+									]
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "on-tap-object",
+											"objectClass": "Touch",
+											"sid": 473092462466808,
+											"parameters": {
+												"object": "SoundButtonText"
+											}
+										}
+									],
+									"actions": [],
+									"sid": 165557372534826,
+									"children": [
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "compare-eventvar",
+													"objectClass": "System",
+													"sid": 230891845005485,
+													"disabled": true,
+													"parameters": {
+														"variable": "input_device",
+														"comparison": 0,
+														"value": "\"desktop\""
+													},
+													"isInverted": true
+												},
+												{
+													"id": "compare-boolean-eventvar",
+													"objectClass": "System",
+													"sid": 908122025774759,
+													"parameters": {
+														"variable": "button_clicked"
+													},
+													"isInverted": true
+												},
+												{
+													"id": "is-visible",
+													"objectClass": "InitialUI",
+													"sid": 461014258959379,
+													"isInverted": true
+												}
+											],
+											"actions": [
+												{
+													"callFunction": "setSoundActivity",
+													"sid": 119180546814658
+												}
+											],
+											"sid": 153199484859819
+										}
+									]
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "on-tap-object",
+											"objectClass": "Touch",
+											"sid": 238105666630818,
+											"parameters": {
+												"object": "MusicButtonText"
+											}
+										}
+									],
+									"actions": [],
+									"sid": 622065006693542,
+									"children": [
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "compare-eventvar",
+													"objectClass": "System",
+													"sid": 741172393798632,
+													"disabled": true,
+													"parameters": {
+														"variable": "input_device",
+														"comparison": 0,
+														"value": "\"desktop\""
+													},
+													"isInverted": true
+												},
+												{
+													"id": "compare-boolean-eventvar",
+													"objectClass": "System",
+													"sid": 706324575790941,
+													"parameters": {
+														"variable": "button_clicked"
+													},
+													"isInverted": true
+												},
+												{
+													"id": "is-visible",
+													"objectClass": "InitialUI",
+													"sid": 841264386202129,
+													"isInverted": true
+												}
+											],
+											"actions": [
+												{
+													"callFunction": "setMusicActivity",
+													"sid": 594086116293348
+												}
+											],
+											"sid": 622947236526174
+										}
+									]
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "on-tap-object",
+											"objectClass": "Touch",
+											"sid": 832011225248134,
+											"parameters": {
+												"object": "VibrateButtonText"
+											}
+										}
+									],
+									"actions": [],
+									"sid": 525669920193716,
+									"children": [
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "compare-eventvar",
+													"objectClass": "System",
+													"sid": 973285551373499,
+													"disabled": true,
+													"parameters": {
+														"variable": "input_device",
+														"comparison": 0,
+														"value": "\"desktop\""
+													},
+													"isInverted": true
+												},
+												{
+													"id": "compare-boolean-eventvar",
+													"objectClass": "System",
+													"sid": 188175138718892,
+													"parameters": {
+														"variable": "button_clicked"
+													},
+													"isInverted": true
+												},
+												{
+													"id": "is-visible",
+													"objectClass": "InitialUI",
+													"sid": 553593117353000,
+													"isInverted": true
+												}
+											],
+											"actions": [
+												{
+													"callFunction": "setVibrate",
+													"sid": 705968657296007
+												}
+											],
+											"sid": 737829505859457
+										}
+									]
+								}
+							],
+							"sid": 629626281734520
+						}
+					],
+					"sid": 850283932219020
+				},
+				{
+					"eventType": "group",
+					"disabled": false,
+					"title": "EndUI",
+					"description": "",
+					"isActiveOnStart": true,
+					"children": [
+						{
+							"eventType": "group",
+							"disabled": false,
+							"title": "EndUIMouse",
+							"description": "",
+							"isActiveOnStart": true,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "on-object-clicked",
+											"objectClass": "Mouse",
+											"sid": 483345774919148,
+											"parameters": {
+												"mouse-button": "left",
+												"click-type": "clicked",
+												"object-clicked": "RestartButtonSprite"
+											}
+										}
+									],
+									"actions": [],
+									"sid": 745236060023253,
+									"children": [
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "compare-boolean-eventvar",
+													"objectClass": "System",
+													"sid": 629870544469690,
+													"parameters": {
+														"variable": "button_clicked"
+													},
+													"isInverted": true
+												},
+												{
+													"id": "is-visible",
+													"objectClass": "GameOverBg",
+													"sid": 764156116848104
+												},
+												{
+													"id": "compare-boolean-eventvar",
+													"objectClass": "System",
+													"sid": 280689106862131,
+													"parameters": {
+														"variable": "game_ended"
+													}
+												}
+											],
+											"actions": [
+												{
+													"callFunction": "restartButtonOnClick",
+													"sid": 283213888512234
+												}
+											],
+											"sid": 750008673679349
+										}
+									]
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "on-object-clicked",
+											"objectClass": "Mouse",
+											"sid": 445685290077253,
+											"parameters": {
+												"mouse-button": "left",
+												"click-type": "clicked",
+												"object-clicked": "HomeButtonSprite"
+											}
+										}
+									],
+									"actions": [],
+									"sid": 785262003640566,
+									"children": [
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "compare-boolean-eventvar",
+													"objectClass": "System",
+													"sid": 368900138844282,
+													"parameters": {
+														"variable": "button_clicked"
+													},
+													"isInverted": true
+												},
+												{
+													"id": "is-visible",
+													"objectClass": "GameOverBg",
+													"sid": 951659868808320
+												},
+												{
+													"id": "compare-boolean-eventvar",
+													"objectClass": "System",
+													"sid": 850649066910295,
+													"parameters": {
+														"variable": "game_ended"
+													}
+												}
+											],
+											"actions": [
+												{
+													"callFunction": "homeButtonOnClick",
+													"sid": 652234508796073
+												}
+											],
+											"sid": 186652457854230
+										}
+									]
+								}
+							],
+							"sid": 193547869580361
+						},
+						{
+							"eventType": "group",
+							"disabled": false,
+							"title": "EndUITouch",
+							"description": "",
+							"isActiveOnStart": true,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "on-tap-object",
+											"objectClass": "Touch",
+											"sid": 538302504687588,
+											"parameters": {
+												"object": "RestartButtonSprite"
+											}
+										}
+									],
+									"actions": [],
+									"sid": 616404734406168,
+									"children": [
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "compare-boolean-eventvar",
+													"objectClass": "System",
+													"sid": 543748790466158,
+													"parameters": {
+														"variable": "button_clicked"
+													},
+													"isInverted": true
+												},
+												{
+													"id": "compare-boolean-eventvar",
+													"objectClass": "System",
+													"sid": 452029048413223,
+													"parameters": {
+														"variable": "game_ended"
+													}
+												}
+											],
+											"actions": [
+												{
+													"callFunction": "restartButtonOnClick",
+													"sid": 231374663402531
+												}
+											],
+											"sid": 287228243228828
+										}
+									]
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "on-tap-object",
+											"objectClass": "Touch",
+											"sid": 645255375755238,
+											"parameters": {
+												"object": "HomeButtonSprite"
+											}
+										}
+									],
+									"actions": [],
+									"sid": 678628077498078,
+									"children": [
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "compare-boolean-eventvar",
+													"objectClass": "System",
+													"sid": 884147377614326,
+													"parameters": {
+														"variable": "button_clicked"
+													},
+													"isInverted": true
+												},
+												{
+													"id": "compare-boolean-eventvar",
+													"objectClass": "System",
+													"sid": 708722345396177,
+													"parameters": {
+														"variable": "game_ended"
+													}
+												}
+											],
+											"actions": [
+												{
+													"callFunction": "homeButtonOnClick",
+													"sid": 548716528977159
+												}
+											],
+											"sid": 271386066231213
+										}
+									]
+								}
+							],
+							"sid": 499567472641892
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "every-tick",
+									"objectClass": "System",
+									"sid": 886971370998198
+								}
+							],
+							"actions": [],
+							"sid": 723713020736214,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-boolean-eventvar",
+											"objectClass": "System",
+											"sid": 733313962946310,
+											"parameters": {
+												"variable": "game_ended"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-eventvar-value",
+											"objectClass": "System",
+											"sid": 953214707803480,
+											"parameters": {
+												"variable": "end_score_value",
+												"value": "GameOverScoreText.Tween.Value(\"score\")"
+											}
+										}
+									],
+									"sid": 131679555803076,
+									"children": [
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "compare-two-values",
+													"objectClass": "System",
+													"sid": 691591079225483,
+													"parameters": {
+														"first-value": "end_score_value",
+														"comparison": 0,
+														"second-value": "0"
+													},
+													"isInverted": true
+												}
+											],
+											"actions": [
+												{
+													"id": "set-text",
+													"objectClass": "GameOverScoreText",
+													"sid": 217392425796764,
+													"parameters": {
+														"text": "round(end_score_value)"
+													}
+												}
+											],
+											"sid": 820048588941904
+										}
+									]
+								}
+							]
+						}
+					],
+					"sid": 975461093478161
+				}
+			],
+			"sid": 954638757513959
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "development",
+			"description": "",
+			"isActiveOnStart": true,
+			"children": [],
+			"sid": 895803274751117
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "Collectable",
+			"description": "",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"eventType": "group",
+					"disabled": false,
+					"title": "CreateColleatable",
+					"description": "",
+					"isActiveOnStart": true,
+					"children": [
+						{
+							"functionName": "createCollectable",
+							"functionDescription": "",
+							"functionCategory": "",
+							"functionReturnType": "none",
+							"functionCopyPicked": false,
+							"functionIsAsync": false,
+							"functionParameters": [],
+							"eventType": "function-block",
+							"conditions": [],
+							"actions": [
+								{
+									"id": "destroy",
+									"objectClass": "Collectable_Apple",
+									"sid": 249204290993146
+								},
+								{
+									"id": "destroy",
+									"objectClass": "Collectable_Banana",
+									"sid": 674110687253498
+								},
+								{
+									"id": "destroy",
+									"objectClass": "Collectable_Muffin",
+									"sid": 815713284981251
+								},
+								{
+									"id": "destroy",
+									"objectClass": "Collectable_Pancake",
+									"sid": 634001371942758
+								},
+								{
+									"id": "destroy",
+									"objectClass": "Collectable_Mushroom",
+									"sid": 997815876120281
+								},
+								{
+									"id": "destroy",
+									"objectClass": "AppleModel",
+									"sid": 252806584768679
+								},
+								{
+									"id": "destroy",
+									"objectClass": "BananaModel",
+									"sid": 561559193418812
+								},
+								{
+									"id": "destroy",
+									"objectClass": "MuffinModel",
+									"sid": 371589643282454
+								},
+								{
+									"id": "destroy",
+									"objectClass": "PancakeModel",
+									"sid": 975438895206833
+								},
+								{
+									"id": "destroy",
+									"objectClass": "MushroomModel",
+									"sid": 778769011112270
+								}
+							],
+							"sid": 680360815691144,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "repeat",
+											"objectClass": "System",
+											"sid": 739552619475691,
+											"parameters": {
+												"count": "collectable_create_count"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "create-object",
+											"objectClass": "System",
+											"sid": 525989037882113,
+											"parameters": {
+												"object-to-create": "Collectable_Apple",
+												"layer": "\"Game\"",
+												"x": "collectableInitPos",
+												"y": "collectableInitPos",
+												"create-hierarchy": false,
+												"template-name": "\"\""
+											}
+										},
+										{
+											"id": "create-object",
+											"objectClass": "System",
+											"sid": 923622016434832,
+											"parameters": {
+												"object-to-create": "AppleModel",
+												"layer": "\"Game\"",
+												"x": "collectableInitPos",
+												"y": "collectableInitPos",
+												"create-hierarchy": false,
+												"template-name": "\"\""
+											}
+										},
+										{
+											"id": "add-child",
+											"objectClass": "Collectable_Apple",
+											"sid": 901475595231287,
+											"parameters": {
+												"child": "AppleModel",
+												"transform-x": true,
+												"transform-y": true,
+												"transform-w": false,
+												"transform-h": false,
+												"transform-a": true,
+												"transform-o": false,
+												"transform-z-elevation": true,
+												"transform-visibility": false,
+												"destroy-with-parent": true
+											}
+										},
+										{
+											"id": "wait-for-previous-actions",
+											"objectClass": "System",
+											"sid": 241886746363189
+										},
+										{
+											"id": "create-object",
+											"objectClass": "System",
+											"sid": 946721597028904,
+											"parameters": {
+												"object-to-create": "Collectable_Banana",
+												"layer": "\"Game\"",
+												"x": "collectableInitPos",
+												"y": "collectableInitPos",
+												"create-hierarchy": false,
+												"template-name": "\"\""
+											}
+										},
+										{
+											"id": "create-object",
+											"objectClass": "System",
+											"sid": 472766362835301,
+											"parameters": {
+												"object-to-create": "BananaModel",
+												"layer": "\"Game\"",
+												"x": "collectableInitPos",
+												"y": "collectableInitPos",
+												"create-hierarchy": false,
+												"template-name": "\"\""
+											}
+										},
+										{
+											"id": "add-child",
+											"objectClass": "Collectable_Banana",
+											"sid": 615603719580243,
+											"parameters": {
+												"child": "BananaModel",
+												"transform-x": true,
+												"transform-y": true,
+												"transform-w": false,
+												"transform-h": false,
+												"transform-a": true,
+												"transform-o": false,
+												"transform-z-elevation": true,
+												"transform-visibility": false,
+												"destroy-with-parent": true
+											}
+										},
+										{
+											"id": "wait-for-previous-actions",
+											"objectClass": "System",
+											"sid": 986906377864417
+										},
+										{
+											"id": "create-object",
+											"objectClass": "System",
+											"sid": 805126210711236,
+											"parameters": {
+												"object-to-create": "Collectable_Muffin",
+												"layer": "\"Game\"",
+												"x": "collectableInitPos",
+												"y": "collectableInitPos",
+												"create-hierarchy": false,
+												"template-name": "\"\""
+											}
+										},
+										{
+											"id": "create-object",
+											"objectClass": "System",
+											"sid": 654283621355011,
+											"parameters": {
+												"object-to-create": "MuffinModel",
+												"layer": "\"Game\"",
+												"x": "collectableInitPos",
+												"y": "collectableInitPos",
+												"create-hierarchy": false,
+												"template-name": "\"\""
+											}
+										},
+										{
+											"id": "add-child",
+											"objectClass": "Collectable_Muffin",
+											"sid": 735464668509235,
+											"parameters": {
+												"child": "MuffinModel",
+												"transform-x": true,
+												"transform-y": true,
+												"transform-w": false,
+												"transform-h": false,
+												"transform-a": true,
+												"transform-o": false,
+												"transform-z-elevation": true,
+												"transform-visibility": false,
+												"destroy-with-parent": true
+											}
+										},
+										{
+											"id": "wait-for-previous-actions",
+											"objectClass": "System",
+											"sid": 917718062406258
+										},
+										{
+											"id": "create-object",
+											"objectClass": "System",
+											"sid": 378439895002483,
+											"parameters": {
+												"object-to-create": "Collectable_Pancake",
+												"layer": "\"Game\"",
+												"x": "collectableInitPos",
+												"y": "collectableInitPos",
+												"create-hierarchy": false,
+												"template-name": "\"\""
+											}
+										},
+										{
+											"id": "create-object",
+											"objectClass": "System",
+											"sid": 349776545903322,
+											"parameters": {
+												"object-to-create": "PancakeModel",
+												"layer": "\"Game\"",
+												"x": "collectableInitPos",
+												"y": "collectableInitPos",
+												"create-hierarchy": false,
+												"template-name": "\"\""
+											}
+										},
+										{
+											"id": "add-child",
+											"objectClass": "Collectable_Pancake",
+											"sid": 589552674279829,
+											"parameters": {
+												"child": "PancakeModel",
+												"transform-x": true,
+												"transform-y": true,
+												"transform-w": false,
+												"transform-h": false,
+												"transform-a": true,
+												"transform-o": false,
+												"transform-z-elevation": true,
+												"transform-visibility": false,
+												"destroy-with-parent": true
+											}
+										},
+										{
+											"id": "create-object",
+											"objectClass": "System",
+											"sid": 705385510301566,
+											"parameters": {
+												"object-to-create": "Collectable_Mushroom",
+												"layer": "\"Game\"",
+												"x": "collectableInitPos",
+												"y": "collectableInitPos",
+												"create-hierarchy": false,
+												"template-name": "\"\""
+											}
+										},
+										{
+											"id": "create-object",
+											"objectClass": "System",
+											"sid": 733435783184017,
+											"parameters": {
+												"object-to-create": "MushroomModel",
+												"layer": "\"Game\"",
+												"x": "collectableInitPos",
+												"y": "collectableInitPos",
+												"create-hierarchy": false,
+												"template-name": "\"\""
+											}
+										},
+										{
+											"id": "add-child",
+											"objectClass": "Collectable_Mushroom",
+											"sid": 471186017321202,
+											"parameters": {
+												"child": "MushroomModel",
+												"transform-x": true,
+												"transform-y": true,
+												"transform-w": false,
+												"transform-h": false,
+												"transform-a": true,
+												"transform-o": false,
+												"transform-z-elevation": true,
+												"transform-visibility": false,
+												"destroy-with-parent": true
+											}
+										},
+										{
+											"id": "set-boolean-instvar",
+											"objectClass": "Collectable_Mushroom",
+											"sid": 785881466604062,
+											"parameters": {
+												"instance-variable": "is_buff",
+												"value": "true"
+											}
+										},
+										{
+											"id": "wait-for-previous-actions",
+											"objectClass": "System",
+											"sid": 757404751716544
+										}
+									],
+									"sid": 670528712315035
+								}
+							]
+						}
+					],
+					"sid": 348927050965593
+				},
+				{
+					"eventType": "group",
+					"disabled": false,
+					"title": "SpawnCollectable",
+					"description": "",
+					"isActiveOnStart": true,
+					"children": [
+						{
+							"functionName": "spawnCollectable",
+							"functionDescription": "",
+							"functionCategory": "",
+							"functionReturnType": "none",
+							"functionCopyPicked": false,
+							"functionIsAsync": false,
+							"functionParameters": [],
+							"eventType": "function-block",
+							"conditions": [],
+							"actions": [
+								{
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 932740536917402,
+									"parameters": {
+										"variable": "collectable_type",
+										"value": "round(random(3))"
+									}
+								},
+								{
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 882297757381739,
+									"parameters": {
+										"variable": "buff_spawn_chance",
+										"value": "round(random(100))"
+									}
+								},
+								{
+									"id": "log",
+									"objectClass": "Browser",
+									"sid": 869487056694070,
+									"disabled": true,
+									"parameters": {
+										"type": "log",
+										"message": "buff_spawn_chance"
+									}
+								}
+							],
+							"sid": 232772156739936,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "pick-by-comparison",
+											"objectClass": "System",
+											"sid": 455174735697333,
+											"parameters": {
+												"object": "HexagonModel",
+												"expression": "HexagonModel.selected",
+												"comparison": 0,
+												"value": "0"
+											}
+										},
+										{
+											"id": "pick-by-comparison",
+											"objectClass": "System",
+											"sid": 793633556602073,
+											"parameters": {
+												"object": "HexagonModel",
+												"expression": "HexagonModel.active",
+												"comparison": 0,
+												"value": "1"
+											}
+										},
+										{
+											"id": "pick-random-instance",
+											"objectClass": "System",
+											"sid": 634958536487620,
+											"parameters": {
+												"object": "HexagonModel"
+											}
+										}
+									],
+									"actions": [],
+									"sid": 843350914871522,
+									"children": [
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "compare-two-values",
+													"objectClass": "System",
+													"sid": 293934828149227,
+													"parameters": {
+														"first-value": "buff_spawn_chance",
+														"comparison": 3,
+														"second-value": "50"
+													}
+												},
+												{
+													"id": "compare-boolean-eventvar",
+													"objectClass": "System",
+													"sid": 546198768329079,
+													"parameters": {
+														"variable": "buff_spawned"
+													},
+													"isInverted": true
+												}
+											],
+											"actions": [
+												{
+													"callFunction": "mushroomColorTween",
+													"sid": 580446399729216
+												},
+												{
+													"id": "set-boolean-eventvar",
+													"objectClass": "System",
+													"sid": 186021743346102,
+													"parameters": {
+														"variable": "buff_spawned",
+														"value": "true"
+													}
+												}
+											],
+											"sid": 630245566567410,
+											"children": [
+												{
+													"eventType": "block",
+													"conditions": [
+														{
+															"id": "pick-by-comparison",
+															"objectClass": "System",
+															"sid": 935820695677284,
+															"parameters": {
+																"object": "Collectable_Mushroom",
+																"expression": "Collectable_Mushroom.is_spawned",
+																"comparison": 0,
+																"value": "0"
+															}
+														},
+														{
+															"id": "pick-random-instance",
+															"objectClass": "System",
+															"sid": 911697471423387,
+															"parameters": {
+																"object": "Collectable_Mushroom"
+															}
+														}
+													],
+													"actions": [
+														{
+															"id": "add-child",
+															"objectClass": "HexagonModel",
+															"sid": 723448989547904,
+															"parameters": {
+																"child": "Collectable_Mushroom",
+																"transform-x": true,
+																"transform-y": true,
+																"transform-w": false,
+																"transform-h": false,
+																"transform-a": false,
+																"transform-o": false,
+																"transform-z-elevation": false,
+																"transform-visibility": false,
+																"destroy-with-parent": false
+															}
+														},
+														{
+															"id": "set-position",
+															"objectClass": "Collectable_Mushroom",
+															"sid": 872287058107092,
+															"parameters": {
+																"x": "HexagonModel.X",
+																"y": "HexagonModel.Y"
+															}
+														},
+														{
+															"id": "set-instvar-value",
+															"objectClass": "Collectable_Mushroom",
+															"sid": 780999126173438,
+															"parameters": {
+																"instance-variable": "is_spawned",
+																"value": "1"
+															}
+														}
+													],
+													"sid": 610850007449660
+												}
+											]
+										},
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "else",
+													"objectClass": "System",
+													"sid": 834791237175508
+												}
+											],
+											"actions": [],
+											"sid": 580930879369298,
+											"children": [
+												{
+													"eventType": "block",
+													"conditions": [
+														{
+															"id": "compare-two-values",
+															"objectClass": "System",
+															"sid": 737170663515296,
+															"parameters": {
+																"first-value": "collectable_type",
+																"comparison": 0,
+																"second-value": "0"
+															}
+														}
+													],
+													"actions": [],
+													"sid": 275149147483841,
+													"children": [
+														{
+															"eventType": "block",
+															"conditions": [
+																{
+																	"id": "pick-by-comparison",
+																	"objectClass": "System",
+																	"sid": 253500106111870,
+																	"parameters": {
+																		"object": "Collectable_Apple",
+																		"expression": "Collectable_Apple.is_spawned",
+																		"comparison": 0,
+																		"value": "0"
+																	}
+																},
+																{
+																	"id": "pick-random-instance",
+																	"objectClass": "System",
+																	"sid": 628532382032560,
+																	"parameters": {
+																		"object": "Collectable_Apple"
+																	}
+																}
+															],
+															"actions": [
+																{
+																	"id": "add-child",
+																	"objectClass": "HexagonModel",
+																	"sid": 556526616782649,
+																	"parameters": {
+																		"child": "Collectable_Apple",
+																		"transform-x": true,
+																		"transform-y": true,
+																		"transform-w": false,
+																		"transform-h": false,
+																		"transform-a": false,
+																		"transform-o": false,
+																		"transform-z-elevation": false,
+																		"transform-visibility": false,
+																		"destroy-with-parent": false
+																	}
+																},
+																{
+																	"id": "set-position",
+																	"objectClass": "Collectable_Apple",
+																	"sid": 829220271179581,
+																	"parameters": {
+																		"x": "HexagonModel.X",
+																		"y": "HexagonModel.Y"
+																	}
+																},
+																{
+																	"id": "set-instvar-value",
+																	"objectClass": "Collectable_Apple",
+																	"sid": 596553681245549,
+																	"parameters": {
+																		"instance-variable": "is_spawned",
+																		"value": "1"
+																	}
+																}
+															],
+															"sid": 994469527491892
+														}
+													]
+												},
+												{
+													"eventType": "block",
+													"conditions": [
+														{
+															"id": "compare-two-values",
+															"objectClass": "System",
+															"sid": 848135791414976,
+															"parameters": {
+																"first-value": "collectable_type",
+																"comparison": 0,
+																"second-value": "1"
+															}
+														}
+													],
+													"actions": [],
+													"sid": 943891216505430,
+													"children": [
+														{
+															"eventType": "block",
+															"conditions": [
+																{
+																	"id": "pick-by-comparison",
+																	"objectClass": "System",
+																	"sid": 650551718163316,
+																	"parameters": {
+																		"object": "Collectable_Banana",
+																		"expression": "Collectable_Banana.is_spawned",
+																		"comparison": 0,
+																		"value": "0"
+																	}
+																},
+																{
+																	"id": "pick-random-instance",
+																	"objectClass": "System",
+																	"sid": 245861904792186,
+																	"parameters": {
+																		"object": "Collectable_Banana"
+																	}
+																}
+															],
+															"actions": [
+																{
+																	"id": "add-child",
+																	"objectClass": "HexagonModel",
+																	"sid": 599990891694772,
+																	"parameters": {
+																		"child": "Collectable_Banana",
+																		"transform-x": true,
+																		"transform-y": true,
+																		"transform-w": false,
+																		"transform-h": false,
+																		"transform-a": false,
+																		"transform-o": false,
+																		"transform-z-elevation": false,
+																		"transform-visibility": false,
+																		"destroy-with-parent": false
+																	}
+																},
+																{
+																	"id": "set-position",
+																	"objectClass": "Collectable_Banana",
+																	"sid": 675815253438956,
+																	"parameters": {
+																		"x": "HexagonModel.X",
+																		"y": "HexagonModel.Y"
+																	}
+																},
+																{
+																	"id": "set-instvar-value",
+																	"objectClass": "Collectable_Banana",
+																	"sid": 313141371754294,
+																	"parameters": {
+																		"instance-variable": "is_spawned",
+																		"value": "1"
+																	}
+																}
+															],
+															"sid": 110401920839851
+														}
+													]
+												},
+												{
+													"eventType": "block",
+													"conditions": [
+														{
+															"id": "compare-two-values",
+															"objectClass": "System",
+															"sid": 163825016537137,
+															"parameters": {
+																"first-value": "collectable_type",
+																"comparison": 0,
+																"second-value": "2"
+															}
+														}
+													],
+													"actions": [],
+													"sid": 796640692038379,
+													"children": [
+														{
+															"eventType": "block",
+															"conditions": [
+																{
+																	"id": "pick-by-comparison",
+																	"objectClass": "System",
+																	"sid": 232859170153509,
+																	"parameters": {
+																		"object": "Collectable_Pancake",
+																		"expression": "Collectable_Pancake.is_spawned",
+																		"comparison": 0,
+																		"value": "0"
+																	}
+																},
+																{
+																	"id": "pick-random-instance",
+																	"objectClass": "System",
+																	"sid": 354043986171698,
+																	"parameters": {
+																		"object": "Collectable_Pancake"
+																	}
+																}
+															],
+															"actions": [
+																{
+																	"id": "add-child",
+																	"objectClass": "HexagonModel",
+																	"sid": 491310436863207,
+																	"parameters": {
+																		"child": "Collectable_Pancake",
+																		"transform-x": true,
+																		"transform-y": true,
+																		"transform-w": false,
+																		"transform-h": false,
+																		"transform-a": false,
+																		"transform-o": false,
+																		"transform-z-elevation": false,
+																		"transform-visibility": false,
+																		"destroy-with-parent": false
+																	}
+																},
+																{
+																	"id": "set-position",
+																	"objectClass": "Collectable_Pancake",
+																	"sid": 747394468588001,
+																	"parameters": {
+																		"x": "HexagonModel.X",
+																		"y": "HexagonModel.Y"
+																	}
+																},
+																{
+																	"id": "set-instvar-value",
+																	"objectClass": "Collectable_Pancake",
+																	"sid": 981987380952337,
+																	"parameters": {
+																		"instance-variable": "is_spawned",
+																		"value": "1"
+																	}
+																}
+															],
+															"sid": 426623344755214
+														}
+													]
+												},
+												{
+													"eventType": "block",
+													"conditions": [
+														{
+															"id": "compare-two-values",
+															"objectClass": "System",
+															"sid": 598707139599990,
+															"parameters": {
+																"first-value": "collectable_type",
+																"comparison": 0,
+																"second-value": "3"
+															}
+														}
+													],
+													"actions": [],
+													"sid": 939336673375894,
+													"children": [
+														{
+															"eventType": "block",
+															"conditions": [
+																{
+																	"id": "pick-by-comparison",
+																	"objectClass": "System",
+																	"sid": 694480565494580,
+																	"parameters": {
+																		"object": "Collectable_Muffin",
+																		"expression": "Collectable_Muffin.is_spawned",
+																		"comparison": 0,
+																		"value": "0"
+																	}
+																},
+																{
+																	"id": "pick-random-instance",
+																	"objectClass": "System",
+																	"sid": 943475156597124,
+																	"parameters": {
+																		"object": "Collectable_Muffin"
+																	}
+																}
+															],
+															"actions": [
+																{
+																	"id": "add-child",
+																	"objectClass": "HexagonModel",
+																	"sid": 538164711935204,
+																	"parameters": {
+																		"child": "Collectable_Muffin",
+																		"transform-x": true,
+																		"transform-y": true,
+																		"transform-w": false,
+																		"transform-h": false,
+																		"transform-a": false,
+																		"transform-o": false,
+																		"transform-z-elevation": false,
+																		"transform-visibility": false,
+																		"destroy-with-parent": false
+																	}
+																},
+																{
+																	"id": "set-position",
+																	"objectClass": "Collectable_Muffin",
+																	"sid": 521786699103414,
+																	"parameters": {
+																		"x": "HexagonModel.X",
+																		"y": "HexagonModel.Y"
+																	}
+																},
+																{
+																	"id": "set-instvar-value",
+																	"objectClass": "Collectable_Muffin",
+																	"sid": 206439556845252,
+																	"parameters": {
+																		"instance-variable": "is_spawned",
+																		"value": "1"
+																	}
+																}
+															],
+															"sid": 994964793932283
+														}
+													]
+												}
+											]
+										}
+									]
+								}
+							]
+						}
+					],
+					"sid": 423583848016792
+				},
+				{
+					"eventType": "group",
+					"disabled": false,
+					"title": "RotateCollectable",
+					"description": "",
+					"isActiveOnStart": true,
+					"children": [
+						{
+							"functionName": "rotateCollectableItems",
+							"functionDescription": "",
+							"functionCategory": "",
+							"functionReturnType": "none",
+							"functionCopyPicked": false,
+							"functionIsAsync": false,
+							"functionParameters": [],
+							"eventType": "function-block",
+							"conditions": [],
+							"actions": [],
+							"sid": 883590022223705,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "for-each",
+											"objectClass": "System",
+											"sid": 692931053026956,
+											"parameters": {
+												"object": "CollectableModels"
+											}
+										}
+									],
+									"actions": [],
+									"sid": 198252915713403,
+									"children": [
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "compare-instance-variable",
+													"objectClass": "Collectables",
+													"sid": 900687463830809,
+													"parameters": {
+														"instance-variable": "is_spawned",
+														"comparison": 0,
+														"value": "1"
+													}
+												},
+												{
+													"id": "pick-children",
+													"objectClass": "Collectables",
+													"sid": 724922881843690,
+													"parameters": {
+														"child": "CollectableModels",
+														"which": "own"
+													}
+												}
+											],
+											"actions": [
+												{
+													"id": "set-rotation",
+													"objectClass": "CollectableModels",
+													"sid": 160522658758867,
+													"parameters": {
+														"x": "Self.XAngle",
+														"y": "Self.YAngle",
+														"z": "Self.ZAngle +(   (dt   * collectable_spin_speed)) ",
+														"rotation-order": "zxy"
+													}
+												},
+												{
+													"id": "set-rotation",
+													"objectClass": "CollectableModels",
+													"sid": 920297834267099,
+													"disabled": true,
+													"parameters": {
+														"x": "Self.XAngle",
+														"y": "Self.YAngle",
+														"z": "Self.ZAngle + (dt * collectable_spin_speed) ",
+														"rotation-order": "zxy"
+													}
+												}
+											],
+											"sid": 892705589038603
+										}
+									]
+								}
+							]
+						}
+					],
+					"sid": 391019231181260
+				},
+				{
+					"eventType": "group",
+					"disabled": false,
+					"title": "CollectableContact",
+					"description": "",
+					"isActiveOnStart": true,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "on-collision-with-another-object",
+									"objectClass": "Player",
+									"sid": 575767217167569,
+									"parameters": {
+										"object": "Collectables"
+									}
+								}
+							],
+							"actions": [
+								{
+									"callFunction": "playCollect1",
+									"sid": 395196375876023
+								}
+							],
+							"sid": 855107518079527,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "is-boolean-instance-variable-set",
+											"objectClass": "Collectables",
+											"sid": 205466925858919,
+											"parameters": {
+												"instance-variable": "is_buff"
+											},
+											"isInverted": true
+										}
+									],
+									"actions": [
+										{
+											"id": "set-position",
+											"objectClass": "Collectables",
+											"sid": 791007540366790,
+											"parameters": {
+												"x": "collectableInitPos",
+												"y": "collectableInitPos"
+											}
+										},
+										{
+											"id": "set-instvar-value",
+											"objectClass": "Collectables",
+											"sid": 889821086333155,
+											"parameters": {
+												"instance-variable": "is_spawned",
+												"value": "0"
+											}
+										},
+										{
+											"callFunction": "addScore",
+											"sid": 464074883528978
+										}
+									],
+									"sid": 368463800328892
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "else",
+											"objectClass": "System",
+											"sid": 908193908754281
+										},
+										{
+											"id": "compare-boolean-eventvar",
+											"objectClass": "System",
+											"sid": 777678013843275,
+											"parameters": {
+												"variable": "buff_collected"
+											},
+											"isInverted": true
+										}
+									],
+									"actions": [
+										{
+											"id": "set-boolean-eventvar",
+											"objectClass": "System",
+											"sid": 444461318082246,
+											"parameters": {
+												"variable": "buff_collected",
+												"value": "true"
+											}
+										},
+										{
+											"id": "set-position",
+											"objectClass": "Collectables",
+											"sid": 191620586946779,
+											"parameters": {
+												"x": "collectableInitPos",
+												"y": "collectableInitPos"
+											}
+										},
+										{
+											"id": "set-instvar-value",
+											"objectClass": "Collectables",
+											"sid": 678946702255922,
+											"parameters": {
+												"instance-variable": "is_spawned",
+												"value": "0"
+											}
+										},
+										{
+											"callFunction": "vibrateDevice",
+											"sid": 485992679066421,
+											"parameters": [
+												"30"
+											]
+										},
+										{
+											"callFunction": "showSlot",
+											"sid": 438167438998193
+										},
+										{
+											"id": "wait",
+											"objectClass": "System",
+											"sid": 896263239606632,
+											"parameters": {
+												"seconds": "slot_dur"
+											}
+										}
+									],
+									"sid": 428914451830603,
+									"children": [
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "compare-boolean-eventvar",
+													"objectClass": "System",
+													"sid": 132916310018974,
+													"parameters": {
+														"variable": "game_ended"
+													},
+													"isInverted": true
+												}
+											],
+											"actions": [
+												{
+													"id": "set-eventvar-value",
+													"objectClass": "System",
+													"sid": 725140658289484,
+													"parameters": {
+														"variable": "buff_type",
+														"value": "round(random(6))"
+													}
+												},
+												{
+													"id": "stop-tweens",
+													"objectClass": "Slot",
+													"sid": 324065329058660,
+													"behaviorType": "Tween",
+													"parameters": {
+														"tags": "\"slot_bg_frame\""
+													}
+												},
+												{
+													"callFunction": "stopSlotAudio",
+													"sid": 369642869572737
+												},
+												{
+													"callFunction": "playSlotAudio2",
+													"sid": 664517241931104
+												},
+												{
+													"callFunction": "changeSlotBgFrame",
+													"sid": 969001600322354,
+													"parameters": [
+														"100"
+													]
+												},
+												{
+													"id": "set-animation-frame",
+													"objectClass": "SlotBuffIcons",
+													"sid": 982595873625173,
+													"parameters": {
+														"frame-number": "buff_type"
+													}
+												},
+												{
+													"callFunction": "slotSizeTween",
+													"sid": 534808572502872
+												},
+												{
+													"id": "wait",
+													"objectClass": "System",
+													"sid": 853958392675706,
+													"parameters": {
+														"seconds": "(slot_scale_dur * slot_scale_repeat_count) * 2 + 1"
+													}
+												}
+											],
+											"sid": 881582124026988,
+											"children": [
+												{
+													"eventType": "block",
+													"conditions": [
+														{
+															"id": "compare-boolean-eventvar",
+															"objectClass": "System",
+															"sid": 524421831115786,
+															"parameters": {
+																"variable": "game_ended"
+															},
+															"isInverted": true
+														}
+													],
+													"actions": [
+														{
+															"id": "set-visible",
+															"objectClass": "Slot",
+															"sid": 396402139090342,
+															"parameters": {
+																"visibility": "invisible"
+															}
+														},
+														{
+															"callFunction": "checkBuffType",
+															"sid": 554081901876842
+														}
+													],
+													"sid": 542102167924194
+												}
+											]
+										}
+									]
+								}
+							]
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "every-tick",
+									"objectClass": "System",
+									"sid": 570488217249347
+								},
+								{
+									"id": "compare-boolean-eventvar",
+									"objectClass": "System",
+									"sid": 545774724042121,
+									"parameters": {
+										"variable": "game_ended"
+									},
+									"isInverted": true
+								},
+								{
+									"id": "compare-boolean-eventvar",
+									"objectClass": "System",
+									"sid": 101552895501936,
+									"parameters": {
+										"variable": "game_started"
+									}
+								}
+							],
+							"actions": [],
+							"sid": 845584970649051,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-boolean-eventvar",
+											"objectClass": "System",
+											"sid": 998362734715157,
+											"parameters": {
+												"variable": "buff_collected"
+											}
+										},
+										{
+											"id": "compare-two-values",
+											"objectClass": "System",
+											"sid": 178032066772129,
+											"parameters": {
+												"first-value": "buff_type",
+												"comparison": 0,
+												"second-value": "-1"
+											}
+										}
+									],
+									"actions": [
+										{
+											"callFunction": "changeSlotBgFrame",
+											"sid": 179842331054662,
+											"parameters": [
+												"Slot.Tween.Value(\"slot_bg_frame\")"
+											]
+										},
+										{
+											"callFunction": "changeBuffFrame",
+											"sid": 619677583194893,
+											"parameters": [
+												"SlotBuffIcons.Tween.Value(\"buff_frame\")"
+											]
+										}
+									],
+									"sid": 347750852486196
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-boolean-eventvar",
+											"objectClass": "System",
+											"sid": 343386578216466,
+											"parameters": {
+												"variable": "screen_smoked"
+											}
+										}
+									],
+									"actions": [
+										{
+											"callFunction": "moveSmokes",
+											"sid": 719317556713111
+										}
+									],
+									"sid": 615394222949021
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-boolean-eventvar",
+											"objectClass": "System",
+											"sid": 812442613744601,
+											"parameters": {
+												"variable": "magnet_effect_started"
+											}
+										}
+									],
+									"actions": [
+										{
+											"callFunction": "lerpCollectables",
+											"sid": 554627170347893
+										}
+									],
+									"sid": 335757336031498
+								}
+							]
+						}
+					],
+					"sid": 407275399542335
+				},
+				{
+					"eventType": "group",
+					"disabled": false,
+					"title": "ResetCollectables",
+					"description": "",
+					"isActiveOnStart": true,
+					"children": [
+						{
+							"functionName": "resetCollectables",
+							"functionDescription": "",
+							"functionCategory": "",
+							"functionReturnType": "none",
+							"functionCopyPicked": false,
+							"functionIsAsync": false,
+							"functionParameters": [],
+							"eventType": "function-block",
+							"conditions": [],
+							"actions": [],
+							"sid": 314595727503311,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [],
+									"actions": [
+										{
+											"id": "set-boolean-eventvar",
+											"objectClass": "System",
+											"sid": 963402726216797,
+											"parameters": {
+												"variable": "buff_collected",
+												"value": "false"
+											}
+										},
+										{
+											"id": "set-boolean-eventvar",
+											"objectClass": "System",
+											"sid": 929439293055228,
+											"parameters": {
+												"variable": "buff_spawned",
+												"value": "false"
+											}
+										},
+										{
+											"id": "set-position",
+											"objectClass": "Collectable_Mushroom",
+											"sid": 342620894831720,
+											"parameters": {
+												"x": "HexagonModel.X",
+												"y": "HexagonModel.Y"
+											}
+										},
+										{
+											"id": "set-instvar-value",
+											"objectClass": "Collectable_Mushroom",
+											"sid": 159112557400583,
+											"parameters": {
+												"instance-variable": "is_spawned",
+												"value": "1"
+											}
+										},
+										{
+											"id": "set-boolean-eventvar",
+											"objectClass": "System",
+											"sid": 546783522853417,
+											"parameters": {
+												"variable": "screen_smoked",
+												"value": "false"
+											}
+										},
+										{
+											"id": "set-boolean-eventvar",
+											"objectClass": "System",
+											"sid": 621741312245526,
+											"parameters": {
+												"variable": "magnet_effect_started",
+												"value": "false"
+											}
+										}
+									],
+									"sid": 618073870217805
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "for-each",
+											"objectClass": "System",
+											"sid": 287446609953500,
+											"parameters": {
+												"object": "Collectables"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-position",
+											"objectClass": "Collectables",
+											"sid": 525545226508527,
+											"parameters": {
+												"x": "collectableInitPos",
+												"y": "collectableInitPos"
+											}
+										},
+										{
+											"id": "set-instvar-value",
+											"objectClass": "Collectables",
+											"sid": 859457342735635,
+											"parameters": {
+												"instance-variable": "is_spawned",
+												"value": "0"
+											}
+										},
+										{
+											"id": "set-default-color",
+											"objectClass": "Collectables",
+											"sid": 985802416989719,
+											"parameters": {
+												"color": "rgbEx255(255,255,255)\r\n"
+											}
+										}
+									],
+									"sid": 843813313024684
+								}
+							]
+						}
+					],
+					"sid": 779857242465595
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "every-x-seconds",
+							"objectClass": "System",
+							"sid": 248076523295690,
+							"parameters": {
+								"interval-seconds": "collectable_spawn_delay"
+							}
+						},
+						{
+							"id": "compare-boolean-eventvar",
+							"objectClass": "System",
+							"sid": 546595506383232,
+							"parameters": {
+								"variable": "loading_done"
+							}
+						},
+						{
+							"id": "compare-boolean-eventvar",
+							"objectClass": "System",
+							"sid": 209536324253937,
+							"parameters": {
+								"variable": "game_started"
+							}
+						},
+						{
+							"id": "compare-boolean-eventvar",
+							"objectClass": "System",
+							"sid": 543637959811086,
+							"parameters": {
+								"variable": "game_ended"
+							},
+							"isInverted": true
+						},
+						{
+							"id": "compare-two-values",
+							"objectClass": "System",
+							"sid": 320470030221477,
+							"parameters": {
+								"first-value": "buff_type",
+								"comparison": 0,
+								"second-value": "6"
+							},
+							"isInverted": true
+						}
+					],
+					"actions": [
+						{
+							"callFunction": "spawnCollectable",
+							"sid": 825413406644785
+						}
+					],
+					"sid": 248790045971172
+				}
+			],
+			"sid": 916374524409088
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "Mushroom",
+			"description": "",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"functionName": "mushroomColorTween",
+					"functionDescription": "",
+					"functionCategory": "",
+					"functionReturnType": "none",
+					"functionCopyPicked": false,
+					"functionIsAsync": false,
+					"functionParameters": [],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [
+						{
+							"id": "tween-one-property",
+							"objectClass": "MushroomModel",
+							"sid": 315420157715871,
+							"behaviorType": "Tween",
+							"parameters": {
+								"tags": "\"\"",
+								"property": "offsetColor",
+								"end-value": "rgbEx(255,255,40)",
+								"time": "0.25",
+								"ease": "noease",
+								"destroy-on-complete": "no",
+								"loop": "yes",
+								"ping-pong": "yes",
+								"repeat-count": "1"
+							}
+						}
+					],
+					"sid": 731555166926473
+				},
+				{
+					"functionName": "checkBuffType",
+					"functionDescription": "",
+					"functionCategory": "",
+					"functionReturnType": "none",
+					"functionCopyPicked": false,
+					"functionIsAsync": false,
+					"functionParameters": [],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [],
+					"sid": 300931835367625,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-eventvar",
+									"objectClass": "System",
+									"sid": 198044884801221,
+									"parameters": {
+										"variable": "buff_type",
+										"comparison": 3,
+										"value": "5"
+									}
+								}
+							],
+							"actions": [
+								{
+									"callFunction": "startProgress",
+									"sid": 617160830986510
+								}
+							],
+							"sid": 609349775618407,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-two-values",
+											"objectClass": "System",
+											"sid": 994227473747201,
+											"parameters": {
+												"first-value": "buff_type",
+												"comparison": 0,
+												"second-value": "0"
+											}
+										}
+									],
+									"actions": [
+										{
+											"type": "comment",
+											"text": "slowed"
+										},
+										{
+											"callFunction": "characterSpeedReduction",
+											"sid": 606047624725677
+										}
+									],
+									"sid": 171714424176399
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-two-values",
+											"objectClass": "System",
+											"sid": 349960955167775,
+											"parameters": {
+												"first-value": "buff_type",
+												"comparison": 0,
+												"second-value": "1"
+											}
+										}
+									],
+									"actions": [
+										{
+											"type": "comment",
+											"text": "ghost"
+										},
+										{
+											"callFunction": "characterGhosMode",
+											"sid": 327467229920471
+										}
+									],
+									"sid": 520006171924656
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-two-values",
+											"objectClass": "System",
+											"sid": 588975831695123,
+											"parameters": {
+												"first-value": "buff_type",
+												"comparison": 0,
+												"second-value": "2"
+											}
+										}
+									],
+									"actions": [
+										{
+											"type": "comment",
+											"text": "freeze"
+										},
+										{
+											"callFunction": "characterMotionFreeze",
+											"sid": 495758615415931
+										}
+									],
+									"sid": 285453825853145
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-two-values",
+											"objectClass": "System",
+											"sid": 847045963627246,
+											"parameters": {
+												"first-value": "buff_type",
+												"comparison": 0,
+												"second-value": "3"
+											}
+										}
+									],
+									"actions": [
+										{
+											"type": "comment",
+											"text": "x2"
+										},
+										{
+											"callFunction": "scoreDoubling",
+											"sid": 357530201672368
+										}
+									],
+									"sid": 929477431722431
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-two-values",
+											"objectClass": "System",
+											"sid": 609673161509495,
+											"parameters": {
+												"first-value": "buff_type",
+												"comparison": 0,
+												"second-value": "4"
+											}
+										}
+									],
+									"actions": [
+										{
+											"type": "comment",
+											"text": "fog"
+										},
+										{
+											"callFunction": "createSmokes",
+											"sid": 290356577091801
+										}
+									],
+									"sid": 503453665738175
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-two-values",
+											"objectClass": "System",
+											"sid": 781919125420409,
+											"parameters": {
+												"first-value": "buff_type",
+												"comparison": 0,
+												"second-value": "5"
+											}
+										}
+									],
+									"actions": [
+										{
+											"type": "comment",
+											"text": "beer"
+										},
+										{
+											"callFunction": "reversePlayerControl",
+											"sid": 623474135122532
+										}
+									],
+									"sid": 542788145734296
+								}
+							]
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "else",
+									"objectClass": "System",
+									"sid": 268748850128531
+								}
+							],
+							"actions": [],
+							"sid": 802568495115793,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-two-values",
+											"objectClass": "System",
+											"sid": 401178679367843,
+											"parameters": {
+												"first-value": "buff_type",
+												"comparison": 0,
+												"second-value": "6"
+											}
+										}
+									],
+									"actions": [
+										{
+											"type": "comment",
+											"text": "magnet"
+										},
+										{
+											"callFunction": "startMagnetEffect",
+											"sid": 270788076634321
+										}
+									],
+									"sid": 616900053777751
+								}
+							]
+						}
+					]
+				}
+			],
+			"sid": 497676055124771
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "Score",
+			"description": "",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"functionName": "addScore",
+					"functionDescription": "",
+					"functionCategory": "",
+					"functionReturnType": "none",
+					"functionCopyPicked": false,
+					"functionIsAsync": false,
+					"functionParameters": [],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [],
+					"sid": 810419004634169,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [],
+							"actions": [
+								{
+									"id": "add-to-eventvar",
+									"objectClass": "System",
+									"sid": 571359574453269,
+									"parameters": {
+										"variable": "main_score",
+										"value": "100  * score_multiplier"
+									}
+								},
+								{
+									"callFunction": "setScoreText",
+									"sid": 162702334226687
+								}
+							],
+							"sid": 270922042813274,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-two-values",
+											"objectClass": "System",
+											"sid": 688072734699497,
+											"parameters": {
+												"first-value": "main_score",
+												"comparison": 4,
+												"second-value": "high_score"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-eventvar-value",
+											"objectClass": "System",
+											"sid": 612855568660665,
+											"parameters": {
+												"variable": "high_score",
+												"value": "main_score"
+											}
+										},
+										{
+											"callFunction": "setLocalStorageHighScore",
+											"sid": 739573837355962
+										},
+										{
+											"callFunction": "setHighScoreText",
+											"sid": 533050136107818
+										}
+									],
+									"sid": 720532008892855
+								}
+							]
+						}
+					]
+				},
+				{
+					"functionName": "setHighScoreText",
+					"functionDescription": "",
+					"functionCategory": "",
+					"functionReturnType": "none",
+					"functionCopyPicked": false,
+					"functionIsAsync": false,
+					"functionParameters": [],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [],
+					"sid": 513642799984108,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [],
+							"actions": [
+								{
+									"id": "set-text",
+									"objectClass": "GameOverHighScoreText",
+									"sid": 793845685327931,
+									"parameters": {
+										"text": "\"Best: \"&high_score"
+									}
+								}
+							],
+							"sid": 172828028120330
+						}
+					]
+				},
+				{
+					"functionName": "setScoreText",
+					"functionDescription": "",
+					"functionCategory": "",
+					"functionReturnType": "none",
+					"functionCopyPicked": false,
+					"functionIsAsync": false,
+					"functionParameters": [],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [
+						{
+							"id": "set-text",
+							"objectClass": "ScoreText",
+							"sid": 105374204184310,
+							"parameters": {
+								"text": "main_score"
+							}
+						}
+					],
+					"sid": 677026766003537
+				}
+			],
+			"sid": 100888069181574
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "Loading",
+			"description": "",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"eventType": "group",
+					"disabled": false,
+					"title": "Loading_Update",
+					"description": "",
+					"isActiveOnStart": true,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "every-tick",
+									"objectClass": "System",
+									"sid": 392473724637210
+								}
+							],
+							"actions": [
+								{
+									"callFunction": "loadingBgMove",
+									"sid": 181216866376637
+								},
+								{
+									"id": "set-position",
+									"objectClass": "ProgressDuck",
+									"sid": 465608154862109,
+									"parameters": {
+										"x": "ProgressBar.X - progressduck_posx",
+										"y": "ProgressBar.Y "
+									}
+								}
+							],
+							"sid": 510146320004122
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "every-x-seconds",
+									"objectClass": "System",
+									"sid": 651857807781168,
+									"parameters": {
+										"interval-seconds": "responsive_dur"
+									}
+								}
+							],
+							"actions": [
+								{
+									"callFunction": "loadingResponsive",
+									"sid": 114328267684373
+								}
+							],
+							"sid": 128612060482242
+						}
+					],
+					"sid": 560373880843140
+				}
+			],
+			"sid": 934147606928623
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "GameTime",
+			"description": "",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "every-tick",
+							"objectClass": "System",
+							"sid": 544648240502424
+						}
+					],
+					"actions": [],
+					"sid": 928972830369127,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-boolean-eventvar",
+									"objectClass": "System",
+									"sid": 434762842194300,
+									"parameters": {
+										"variable": "game_started"
+									}
+								},
+								{
+									"id": "compare-boolean-eventvar",
+									"objectClass": "System",
+									"sid": 463231475227322,
+									"parameters": {
+										"variable": "game_ended"
+									},
+									"isInverted": true
+								}
+							],
+							"actions": [
+								{
+									"id": "add-to-eventvar",
+									"objectClass": "System",
+									"sid": 438115239691022,
+									"parameters": {
+										"variable": "timer",
+										"value": "dt"
+									}
+								}
+							],
+							"sid": 767471985678579,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-eventvar",
+											"objectClass": "System",
+											"sid": 521455225580218,
+											"parameters": {
+												"variable": "timer",
+												"comparison": 5,
+												"value": "0.006"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-eventvar-value",
+											"objectClass": "System",
+											"sid": 727951947220994,
+											"parameters": {
+												"variable": "timer",
+												"value": "0"
+											}
+										},
+										{
+											"id": "add-to-eventvar",
+											"objectClass": "System",
+											"sid": 439314221937208,
+											"parameters": {
+												"variable": "play_time",
+												"value": "0.01"
+											}
+										},
+										{
+											"callFunction": "setPlayTimeText",
+											"sid": 447966531242103
+										}
+									],
+									"sid": 975637368854277
+								}
+							]
+						}
+					]
+				},
+				{
+					"functionName": "setPlayTimeText",
+					"functionDescription": "",
+					"functionCategory": "",
+					"functionReturnType": "none",
+					"functionCopyPicked": false,
+					"functionIsAsync": false,
+					"functionParameters": [],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [
+						{
+							"id": "set-text",
+							"objectClass": "GameOverTimeText",
+							"sid": 618190399465699,
+							"parameters": {
+								"text": "\"Time Played: \"&play_time&\"'\""
+							}
+						}
+					],
+					"sid": 323419190077671
+				}
+			],
+			"sid": 799507357187987
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "DeathCount",
+			"description": "",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"functionName": "setDeathCountText",
+					"functionDescription": "",
+					"functionCategory": "",
+					"functionReturnType": "none",
+					"functionCopyPicked": false,
+					"functionIsAsync": false,
+					"functionParameters": [],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [],
+					"sid": 834177045005924,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [],
+							"actions": [
+								{
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 759576337129828,
+									"parameters": {
+										"variable": "death_count",
+										"value": "death_count + 1"
+									}
+								},
+								{
+									"id": "set-text",
+									"objectClass": "GameOverDeathCountText",
+									"sid": 847590587825254,
+									"parameters": {
+										"text": "\"Total Death: \"&death_count"
+									}
+								}
+							],
+							"sid": 871237644269079
+						}
+					]
+				}
+			],
+			"sid": 767927555406704
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "SurviveRate",
+			"description": "",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"functionName": "checkSurviveRate",
+					"functionDescription": "",
+					"functionCategory": "",
+					"functionReturnType": "none",
+					"functionCopyPicked": false,
+					"functionIsAsync": false,
+					"functionParameters": [],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [],
+					"sid": 330243294585998,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-eventvar",
+									"objectClass": "System",
+									"sid": 360480827672868,
+									"parameters": {
+										"variable": "end_score",
+										"comparison": 2,
+										"value": "500"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 830217796697123,
+									"parameters": {
+										"variable": "survival_rate",
+										"value": "Functions.getRandomNumber(1,9)"
+									}
+								}
+							],
+							"sid": 676221729455941
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-eventvar",
+									"objectClass": "System",
+									"sid": 458341047570488,
+									"parameters": {
+										"variable": "end_score",
+										"comparison": 5,
+										"value": "500"
+									}
+								},
+								{
+									"id": "compare-eventvar",
+									"objectClass": "System",
+									"sid": 284048434738812,
+									"parameters": {
+										"variable": "end_score",
+										"comparison": 3,
+										"value": "2000"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 921400318111696,
+									"parameters": {
+										"variable": "survival_rate",
+										"value": "Functions.getRandomNumber(10,30)"
+									}
+								}
+							],
+							"sid": 270186191371835
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-eventvar",
+									"objectClass": "System",
+									"sid": 612505283997640,
+									"parameters": {
+										"variable": "end_score",
+										"comparison": 4,
+										"value": "2000"
+									}
+								},
+								{
+									"id": "compare-eventvar",
+									"objectClass": "System",
+									"sid": 592477635103053,
+									"parameters": {
+										"variable": "end_score",
+										"comparison": 3,
+										"value": "5000"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 174453152651647,
+									"parameters": {
+										"variable": "survival_rate",
+										"value": "Functions.getRandomNumber(31,50)"
+									}
+								}
+							],
+							"sid": 693801702945098
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-eventvar",
+									"objectClass": "System",
+									"sid": 420803788188434,
+									"parameters": {
+										"variable": "end_score",
+										"comparison": 4,
+										"value": "5000"
+									}
+								},
+								{
+									"id": "compare-eventvar",
+									"objectClass": "System",
+									"sid": 857354228826607,
+									"parameters": {
+										"variable": "end_score",
+										"comparison": 3,
+										"value": "10000"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 875304008391072,
+									"parameters": {
+										"variable": "survival_rate",
+										"value": "Functions.getRandomNumber(51,70)"
+									}
+								}
+							],
+							"sid": 140009953488661
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-eventvar",
+									"objectClass": "System",
+									"sid": 398345545037283,
+									"parameters": {
+										"variable": "end_score",
+										"comparison": 4,
+										"value": "10000"
+									}
+								},
+								{
+									"id": "compare-eventvar",
+									"objectClass": "System",
+									"sid": 746642448683596,
+									"parameters": {
+										"variable": "end_score",
+										"comparison": 3,
+										"value": "20000"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 762411788936465,
+									"parameters": {
+										"variable": "survival_rate",
+										"value": "Functions.getRandomNumber(72,90)"
+									}
+								}
+							],
+							"sid": 508062609525546
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-eventvar",
+									"objectClass": "System",
+									"sid": 941643118649060,
+									"parameters": {
+										"variable": "end_score",
+										"comparison": 4,
+										"value": "20000"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 307961681632895,
+									"parameters": {
+										"variable": "survival_rate",
+										"value": "Functions.getRandomNumber(91,99)"
+									}
+								}
+							],
+							"sid": 203309380701700
+						}
+					]
+				},
+				{
+					"functionName": "setSurviveRateText",
+					"functionDescription": "",
+					"functionCategory": "",
+					"functionReturnType": "none",
+					"functionCopyPicked": false,
+					"functionIsAsync": false,
+					"functionParameters": [],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [],
+					"sid": 984195196086139,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [],
+							"actions": [
+								{
+									"id": "set-text",
+									"objectClass": "GameOverSurviveRateText",
+									"sid": 699245750949030,
+									"parameters": {
+										"text": "\"Survival Rate: %\" &  int(survival_rate)&\".\"&(round(Functions.getRandomNumber(1,99)))"
+									}
+								}
+							],
+							"sid": 356599283622589
+						}
+					]
+				}
+			],
+			"sid": 136219340177425
+		}
+	],
+	"sid": 327360258209013
+}

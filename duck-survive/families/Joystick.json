@@ -1,0 +1,13 @@
+{
+	"name": "Joystick",
+	"plugin-id": "Sprite",
+	"sid": 795430689615899,
+	"instanceVariables": [],
+	"behaviorTypes": [],
+	"effectTypes": [],
+	"members": [
+		"JoystickBg",
+		"JoystickSprite",
+		"JoystickDrag"
+	]
+}

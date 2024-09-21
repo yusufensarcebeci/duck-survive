@@ -1,0 +1,115 @@
+{
+	"name": "TutorialMouse",
+	"plugin-id": "Sprite",
+	"sid": 197469652215806,
+	"isGlobal": false,
+	"instanceVariables": [],
+	"behaviorTypes": [],
+	"effectTypes": [],
+	"animations": {
+		"items": [
+			{
+				"frames": [
+					{
+						"width": 128,
+						"height": 128,
+						"originX": 0.46875,
+						"originY": 0.46875,
+						"originalSource": "",
+						"exportFormat": "lossless",
+						"exportQuality": 0.8,
+						"fileType": "image/png",
+						"imageSpriteId": 6229946,
+						"collisionPoly": {
+							"points": [
+								0.36153846153846153,
+								0.011627906976744186,
+								0.6384615384615384,
+								0.011627906976744186,
+								0.9923076923076923,
+								0.5465116279069767,
+								0.9846153846153847,
+								0.9883720930232558,
+								0.007692307692307693,
+								0.9767441860465116,
+								0.007692307692307693,
+								0.5465116279069767
+							]
+						},
+						"useCollisionPoly": true,
+						"duration": 1,
+						"tag": ""
+					},
+					{
+						"width": 128,
+						"height": 128,
+						"originX": 0.5,
+						"originY": 0.5,
+						"originalSource": "",
+						"exportFormat": "lossless",
+						"exportQuality": 0.8,
+						"fileType": "image/png",
+						"imageSpriteId": 7452573,
+						"collisionPoly": {
+							"points": [
+								0.36153846153846153,
+								0.011627906976744186,
+								0.6384615384615384,
+								0.011627906976744186,
+								0.9923076923076923,
+								0.5465116279069767,
+								0.9846153846153847,
+								0.9883720930232558,
+								0.007692307692307693,
+								0.9767441860465116,
+								0.007692307692307693,
+								0.5465116279069767
+							]
+						},
+						"useCollisionPoly": true,
+						"duration": 1,
+						"tag": ""
+					},
+					{
+						"width": 128,
+						"height": 128,
+						"originX": 0.46875,
+						"originY": 0.46875,
+						"originalSource": "",
+						"exportFormat": "lossless",
+						"exportQuality": 0.8,
+						"fileType": "image/png",
+						"imageSpriteId": 8720859,
+						"collisionPoly": {
+							"points": [
+								0.36153846153846153,
+								0.011627906976744186,
+								0.6384615384615384,
+								0.011627906976744186,
+								0.9923076923076923,
+								0.5465116279069767,
+								0.9846153846153847,
+								0.9883720930232558,
+								0.007692307692307693,
+								0.9767441860465116,
+								0.007692307692307693,
+								0.5465116279069767
+							]
+						},
+						"useCollisionPoly": true,
+						"duration": 1,
+						"tag": ""
+					}
+				],
+				"sid": 867159962378513,
+				"name": "Animation 1",
+				"isLooping": true,
+				"isPingPong": false,
+				"repeatCount": 1,
+				"repeatTo": 0,
+				"speed": 2
+			}
+		],
+		"subfolders": []
+	}
+}

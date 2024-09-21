@@ -1,0 +1,718 @@
+{
+	"name": "props",
+	"events": [
+		{
+			"eventType": "comment",
+			"text": "Development"
+		},
+		{
+			"eventType": "variable",
+			"name": "divide_test",
+			"type": "number",
+			"initialValue": "2",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 237017833428001
+		},
+		{
+			"eventType": "variable",
+			"name": "cam_value_bool",
+			"type": "boolean",
+			"initialValue": "false",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 199207309658438
+		},
+		{
+			"eventType": "variable",
+			"name": "cam_test_1",
+			"type": "boolean",
+			"initialValue": "false",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 420376335393609
+		},
+		{
+			"eventType": "comment",
+			"text": "Game Props"
+		},
+		{
+			"eventType": "variable",
+			"name": "responsive_dur",
+			"type": "number",
+			"initialValue": "0.2",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 332719568965238
+		},
+		{
+			"eventType": "variable",
+			"name": "ui_tween_dur",
+			"type": "number",
+			"initialValue": "0.2",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 422266067245838
+		},
+		{
+			"eventType": "variable",
+			"name": "loading_done",
+			"type": "boolean",
+			"initialValue": "false",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 425306004704049
+		},
+		{
+			"eventType": "variable",
+			"name": "game_started",
+			"type": "boolean",
+			"initialValue": "false",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 333729442004044
+		},
+		{
+			"eventType": "variable",
+			"name": "game_ended",
+			"type": "boolean",
+			"initialValue": "false",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 904949482222514
+		},
+		{
+			"eventType": "variable",
+			"name": "high_score",
+			"type": "number",
+			"initialValue": "0",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 325623385801049
+		},
+		{
+			"eventType": "variable",
+			"name": "end_score",
+			"type": "number",
+			"initialValue": "0",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 178063284212262
+		},
+		{
+			"eventType": "variable",
+			"name": "main_score",
+			"type": "number",
+			"initialValue": "0",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 135173513883770
+		},
+		{
+			"eventType": "variable",
+			"name": "score_multiplier",
+			"type": "number",
+			"initialValue": "1",
+			"comment": "should be 1",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 167079750181837
+		},
+		{
+			"eventType": "variable",
+			"name": "death_count",
+			"type": "number",
+			"initialValue": "0",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 571720808590647
+		},
+		{
+			"eventType": "variable",
+			"name": "survival_rate",
+			"type": "number",
+			"initialValue": "0",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 201528034222824
+		},
+		{
+			"eventType": "variable",
+			"name": "play_time",
+			"type": "number",
+			"initialValue": "0",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 759894641449566
+		},
+		{
+			"eventType": "variable",
+			"name": "button_clicked",
+			"type": "boolean",
+			"initialValue": "false",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 584721017936963
+		},
+		{
+			"eventType": "variable",
+			"name": "timer",
+			"type": "number",
+			"initialValue": "0",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 785982923437747
+		},
+		{
+			"eventType": "variable",
+			"name": "sound_on",
+			"type": "number",
+			"initialValue": "1",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 139834915922638
+		},
+		{
+			"eventType": "variable",
+			"name": "music_on",
+			"type": "number",
+			"initialValue": "1",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 943354183204798
+		},
+		{
+			"eventType": "variable",
+			"name": "vibration_on",
+			"type": "number",
+			"initialValue": "1",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 878801619447563
+		},
+		{
+			"eventType": "comment",
+			"text": "Camera Props"
+		},
+		{
+			"eventType": "variable",
+			"name": "initial_cam_x_add",
+			"type": "number",
+			"initialValue": "300",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 728882030029594
+		},
+		{
+			"eventType": "variable",
+			"name": "cam_x_add",
+			"type": "number",
+			"initialValue": "200",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 691136283759805
+		},
+		{
+			"eventType": "variable",
+			"name": "initial_cam_z",
+			"type": "number",
+			"initialValue": "300",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 764037021709583
+		},
+		{
+			"eventType": "variable",
+			"name": "current_cam_z",
+			"type": "number",
+			"initialValue": "300",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 435935630977059
+		},
+		{
+			"eventType": "variable",
+			"name": "cam_start_time",
+			"type": "number",
+			"initialValue": "0",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 768184044698192
+		},
+		{
+			"eventType": "variable",
+			"name": "tp_camera_height",
+			"type": "number",
+			"initialValue": "360",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 139931516290939
+		},
+		{
+			"eventType": "variable",
+			"name": "cam_move_dur",
+			"type": "number",
+			"initialValue": "1.6",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 463402339021454
+		},
+		{
+			"eventType": "comment",
+			"text": "Player Props"
+		},
+		{
+			"eventType": "variable",
+			"name": "initial_player_x",
+			"type": "number",
+			"initialValue": "0",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 586407123944009
+		},
+		{
+			"eventType": "variable",
+			"name": "initial_player_y",
+			"type": "number",
+			"initialValue": "0",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 468869215086498
+		},
+		{
+			"eventType": "variable",
+			"name": "player_max_speed",
+			"type": "number",
+			"initialValue": "70",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 750305896178486
+		},
+		{
+			"eventType": "variable",
+			"name": "player_fall_speed",
+			"type": "number",
+			"initialValue": "180",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 762700725178221
+		},
+		{
+			"eventType": "variable",
+			"name": "player_fall",
+			"type": "boolean",
+			"initialValue": "false",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 977494377134419
+		},
+		{
+			"eventType": "variable",
+			"name": "reverse_dir",
+			"type": "number",
+			"initialValue": "1",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 948166397799375
+		},
+		{
+			"eventType": "comment",
+			"text": "Grid Props"
+		},
+		{
+			"eventType": "variable",
+			"name": "ground_created",
+			"type": "boolean",
+			"initialValue": "false",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 109416120328635
+		},
+		{
+			"eventType": "variable",
+			"name": "grid_size",
+			"type": "number",
+			"initialValue": "10",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 812815535106707
+		},
+		{
+			"eventType": "variable",
+			"name": "hex_initial_posx",
+			"type": "number",
+			"initialValue": "30",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 997343907968780
+		},
+		{
+			"eventType": "variable",
+			"name": "hex_posx",
+			"type": "number",
+			"initialValue": "630",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 225146512444783
+		},
+		{
+			"eventType": "variable",
+			"name": "hex_posy",
+			"type": "number",
+			"initialValue": "500",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 491309555251729
+		},
+		{
+			"eventType": "variable",
+			"name": "hex_side_length",
+			"type": "number",
+			"initialValue": "33",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 180254544157226
+		},
+		{
+			"eventType": "variable",
+			"name": "hex_create_count",
+			"type": "number",
+			"initialValue": "0",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 169056152112741
+		},
+		{
+			"eventType": "variable",
+			"name": "hex_disable_dur",
+			"type": "number",
+			"initialValue": "6",
+			"comment": "hexagon deactivation time",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 297268666419963
+		},
+		{
+			"eventType": "variable",
+			"name": "disabled_hex_count",
+			"type": "number",
+			"initialValue": "0",
+			"comment": "total hex deactivation count",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 583480440479759
+		},
+		{
+			"eventType": "variable",
+			"name": "input_device",
+			"type": "string",
+			"initialValue": "undefined",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 471418254770358
+		},
+		{
+			"eventType": "variable",
+			"name": "input_type",
+			"type": "string",
+			"initialValue": "undefined",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 256550719665900
+		},
+		{
+			"eventType": "variable",
+			"name": "disabled_hex_limit",
+			"type": "number",
+			"initialValue": "12",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 502637530042429
+		},
+		{
+			"eventType": "comment",
+			"text": "Effect Props"
+		},
+		{
+			"eventType": "variable",
+			"name": "loading_bg_speed",
+			"type": "number",
+			"initialValue": "50",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 730839078096792
+		},
+		{
+			"eventType": "variable",
+			"name": "ocean_speed",
+			"type": "number",
+			"initialValue": "20",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 426631767903644
+		},
+		{
+			"eventType": "variable",
+			"name": "progressduck_posx",
+			"type": "number",
+			"initialValue": "120",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 946227203899644
+		},
+		{
+			"eventType": "variable",
+			"name": "hex_blink_repeat",
+			"type": "number",
+			"initialValue": "5",
+			"comment": "blink tween repeat count",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 351888627762278
+		},
+		{
+			"eventType": "variable",
+			"name": "hex_blink_dur",
+			"type": "number",
+			"initialValue": "0.3",
+			"comment": "blink tween dur",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 784797347403444
+		},
+		{
+			"eventType": "variable",
+			"name": "slot_scale_dur",
+			"type": "number",
+			"initialValue": "0.3",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 460702830684197
+		},
+		{
+			"eventType": "variable",
+			"name": "slot_scale_repeat_count",
+			"type": "number",
+			"initialValue": "3",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 892510122577839
+		},
+		{
+			"eventType": "variable",
+			"name": "buff_dur",
+			"type": "number",
+			"initialValue": "10",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 536178420532096
+		},
+		{
+			"eventType": "variable",
+			"name": "slot_dur",
+			"type": "number",
+			"initialValue": "3",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 714158084729514
+		},
+		{
+			"eventType": "variable",
+			"name": "screen_smoked",
+			"type": "boolean",
+			"initialValue": "false",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 552611480198295
+		},
+		{
+			"eventType": "variable",
+			"name": "min_moke_speed",
+			"type": "number",
+			"initialValue": "250",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 592576978941546
+		},
+		{
+			"eventType": "variable",
+			"name": "end_score_value",
+			"type": "number",
+			"initialValue": "0",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 113734164986288
+		},
+		{
+			"eventType": "variable",
+			"name": "end_score_tween_dur",
+			"type": "number",
+			"initialValue": "3.5",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 626874348944813
+		},
+		{
+			"eventType": "comment",
+			"text": "Collectable Props"
+		},
+		{
+			"eventType": "variable",
+			"name": "collectable_create_count",
+			"type": "number",
+			"initialValue": "5",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 140184362065599
+		},
+		{
+			"eventType": "variable",
+			"name": "collectable_spawn_delay",
+			"type": "number",
+			"initialValue": "1",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 548665493597969
+		},
+		{
+			"eventType": "variable",
+			"name": "collectable_spin_speed",
+			"type": "number",
+			"initialValue": "60",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 208510964546505
+		},
+		{
+			"eventType": "variable",
+			"name": "collectable_type",
+			"type": "number",
+			"initialValue": "0",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 634174731372944
+		},
+		{
+			"eventType": "variable",
+			"name": "collectableInitPos",
+			"type": "number",
+			"initialValue": "-10000",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 216817560739392
+		},
+		{
+			"eventType": "variable",
+			"name": "magnet_effect_started",
+			"type": "boolean",
+			"initialValue": "false",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 273064480377200
+		},
+		{
+			"eventType": "comment",
+			"text": "Buff & Slot Props"
+		},
+		{
+			"eventType": "variable",
+			"name": "buff_spawned",
+			"type": "boolean",
+			"initialValue": "false",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 650337496561170
+		},
+		{
+			"eventType": "variable",
+			"name": "buff_collected",
+			"type": "boolean",
+			"initialValue": "false",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 242408396661136
+		},
+		{
+			"eventType": "variable",
+			"name": "buff_type",
+			"type": "number",
+			"initialValue": "-1",
+			"comment": "should be -1",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 109842846358640
+		},
+		{
+			"eventType": "variable",
+			"name": "buff_spawn_chance",
+			"type": "number",
+			"initialValue": "15",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 856746227547468
+		}
+	],
+	"sid": 328586186357695
+}

@@ -1,0 +1,26 @@
+{
+	"name": "TutorialObjects",
+	"plugin-id": "Sprite",
+	"sid": 647769224899806,
+	"instanceVariables": [],
+	"behaviorTypes": [
+		{
+			"behaviorId": "Tween",
+			"name": "Tween",
+			"sid": 591513499091177
+		}
+	],
+	"effectTypes": [],
+	"members": [
+		"TutorialMuffin",
+		"TutorialBanana",
+		"TutorialApple",
+		"TutorialPancake",
+		"TutorialMushroom",
+		"TutorialMouse",
+		"TutorialKeyboard",
+		"TutorialTouch",
+		"TutorialIcons",
+		"TutorialBg"
+	]
+}

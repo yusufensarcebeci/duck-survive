@@ -1,0 +1,57 @@
+{
+	"name": "BuffProgressLine",
+	"plugin-id": "Sprite",
+	"sid": 269258887202665,
+	"isGlobal": false,
+	"instanceVariables": [],
+	"behaviorTypes": [
+		{
+			"behaviorId": "Tween",
+			"name": "Tween",
+			"sid": 765675152901932
+		}
+	],
+	"effectTypes": [],
+	"animations": {
+		"items": [
+			{
+				"frames": [
+					{
+						"width": 100,
+						"height": 88,
+						"originX": 0,
+						"originY": 0.5,
+						"originalSource": "",
+						"exportFormat": "lossless",
+						"exportQuality": 0.8,
+						"fileType": "image/png",
+						"imageSpriteId": 2536050,
+						"collisionPoly": {
+							"points": [
+								0.012169966996699672,
+								0.01379066478076379,
+								0.9878300330033004,
+								0.01379066478076379,
+								0.9878300330033004,
+								0.9862093352192363,
+								0.012169966996699672,
+								0.9862093352192363
+							]
+						},
+						"useCollisionPoly": true,
+						"duration": 1,
+						"tag": ""
+					}
+				],
+				"sid": 183697844385059,
+				"name": "Animation 1",
+				"isLooping": false,
+				"isPingPong": false,
+				"repeatCount": 1,
+				"repeatTo": 0,
+				"speed": 5
+			}
+		],
+		"subfolders": []
+	}
+}

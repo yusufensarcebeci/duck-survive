@@ -1,0 +1,22 @@
+{
+	"name": "TutorialTexts",
+	"plugin-id": "Text",
+	"sid": 843767404323318,
+	"instanceVariables": [],
+	"behaviorTypes": [
+		{
+			"behaviorId": "Tween",
+			"name": "Tween",
+			"sid": 531749913052932
+		}
+	],
+	"effectTypes": [],
+	"members": [
+		"TutorialText3",
+		"TutorialText1",
+		"TutorialText2",
+		"TutorialLabel",
+		"TutorialText4",
+		"GotItButtonText"
+	]
+}

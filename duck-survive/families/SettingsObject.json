@@ -1,0 +1,19 @@
+{
+	"name": "SettingsObject",
+	"plugin-id": "Sprite",
+	"sid": 592168792571947,
+	"instanceVariables": [],
+	"behaviorTypes": [
+		{
+			"behaviorId": "Tween",
+			"name": "Tween",
+			"sid": 235154361805035
+		}
+	],
+	"effectTypes": [],
+	"members": [
+		"BackButtonSprite",
+		"SettingsBG",
+		"SettingsBg2"
+	]
+}

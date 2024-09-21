@@ -1,0 +1,50 @@
+{
+	"name": "GameLabelSprite",
+	"plugin-id": "Sprite",
+	"sid": 450729267329614,
+	"isGlobal": false,
+	"instanceVariables": [],
+	"behaviorTypes": [
+		{
+			"behaviorId": "Sin",
+			"name": "Sine",
+			"sid": 556627270085169
+		},
+		{
+			"behaviorId": "Sin",
+			"name": "Sine2",
+			"sid": 350706498383613
+		}
+	],
+	"effectTypes": [],
+	"animations": {
+		"items": [
+			{
+				"frames": [
+					{
+						"width": 390,
+						"height": 313,
+						"originX": 0.48429980276134116,
+						"originY": 0.6967544485457571,
+						"originalSource": "",
+						"exportFormat": "lossless",
+						"exportQuality": 0.8,
+						"fileType": "image/png",
+						"imageSpriteId": 6186560,
+						"useCollisionPoly": true,
+						"duration": 1,
+						"tag": ""
+					}
+				],
+				"sid": 421183513032291,
+				"name": "Animation 1",
+				"isLooping": false,
+				"isPingPong": false,
+				"repeatCount": 1,
+				"repeatTo": 0,
+				"speed": 5
+			}
+		],
+		"subfolders": []
+	}
+}

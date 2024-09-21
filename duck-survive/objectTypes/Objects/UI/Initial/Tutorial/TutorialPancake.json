@@ -1,0 +1,87 @@
+{
+	"name": "TutorialPancake",
+	"plugin-id": "Sprite",
+	"sid": 965046809305416,
+	"isGlobal": false,
+	"instanceVariables": [],
+	"behaviorTypes": [],
+	"effectTypes": [],
+	"animations": {
+		"items": [
+			{
+				"frames": [
+					{
+						"width": 256,
+						"height": 256,
+						"originX": 0.5,
+						"originY": 0.5,
+						"originalSource": "",
+						"exportFormat": "lossless",
+						"exportQuality": 0.8,
+						"fileType": "image/png",
+						"imageSpriteId": 7880904,
+						"collisionPoly": {
+							"points": [
+								0.265625,
+								0,
+								0.3125,
+								0,
+								0.69140625,
+								0.06640625,
+								0.8984375,
+								0.32421875,
+								0.9375,
+								0.4140625,
+								0.94921875,
+								0.48046875,
+								0.94921875,
+								0.60546875,
+								0.91796875,
+								0.72265625,
+								0.8828125,
+								0.79296875,
+								0.82421875,
+								0.875,
+								0.76171875,
+								0.9375,
+								0.7265625,
+								0.96484375,
+								0.65234375,
+								1,
+								0.33203125,
+								0.99609375,
+								0.2734375,
+								0.96484375,
+								0.23828125,
+								0.9375,
+								0.17578125,
+								0.875,
+								0.1171875,
+								0.79296875,
+								0.08203125,
+								0.72265625,
+								0.05078125,
+								0.60546875,
+								0.05078125,
+								0.48046875,
+								0.078125,
+								0.3671875
+							]
+						},
+						"useCollisionPoly": true,
+						"duration": 1,
+						"tag": ""
+					}
+				],
+				"sid": 402625265959702,
+				"name": "Animation 1",
+				"isLooping": false,
+				"isPingPong": false,
+				"repeatCount": 1,
+				"repeatTo": 0,
+				"speed": 5
+			}
+		],
+		"subfolders": []
+	}
+}

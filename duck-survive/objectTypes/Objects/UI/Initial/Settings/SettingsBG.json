@@ -1,0 +1,51 @@
+{
+	"name": "SettingsBG",
+	"plugin-id": "Sprite",
+	"sid": 224418655717467,
+	"isGlobal": false,
+	"instanceVariables": [],
+	"behaviorTypes": [],
+	"effectTypes": [],
+	"animations": {
+		"items": [
+			{
+				"frames": [
+					{
+						"width": 250,
+						"height": 424,
+						"originX": 0.5180722891566265,
+						"originY": 0.48936170212765956,
+						"originalSource": "",
+						"exportFormat": "lossless",
+						"exportQuality": 0.8,
+						"fileType": "image/png",
+						"imageSpriteId": 9877684,
+						"collisionPoly": {
+							"points": [
+								0.020080321285140562,
+								0,
+								1,
+								0,
+								1,
+								0.9078014184397163,
+								0.020080321285140562,
+								0.9078014184397163
+							]
+						},
+						"useCollisionPoly": true,
+						"duration": 1,
+						"tag": ""
+					}
+				],
+				"sid": 256145904555713,
+				"name": "Animation 1",
+				"isLooping": false,
+				"isPingPong": false,
+				"repeatCount": 1,
+				"repeatTo": 0,
+				"speed": 5
+			}
+		],
+		"subfolders": []
+	}
+}

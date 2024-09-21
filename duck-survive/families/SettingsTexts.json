@@ -1,0 +1,20 @@
+{
+	"name": "SettingsTexts",
+	"plugin-id": "Text",
+	"sid": 676412983995458,
+	"instanceVariables": [],
+	"behaviorTypes": [
+		{
+			"behaviorId": "Tween",
+			"name": "Tween",
+			"sid": 921103625669048
+		}
+	],
+	"effectTypes": [],
+	"members": [
+		"SettingLabel",
+		"SoundButtonText",
+		"MusicButtonText",
+		"VibrateButtonText"
+	]
+}

@@ -1,0 +1,22 @@
+{
+	"name": "BuffParticle3",
+	"plugin-id": "Particles",
+	"sid": 487057757545144,
+	"isGlobal": false,
+	"instanceVariables": [],
+	"behaviorTypes": [],
+	"effectTypes": [],
+	"image": {
+		"width": 256,
+		"height": 256,
+		"originX": 0.5,
+		"originY": 0.5,
+		"originalSource": "",
+		"exportFormat": "lossless",
+		"exportQuality": 0.8,
+		"fileType": "image/png",
+		"imageSpriteId": 6799824,
+		"useCollisionPoly": true,
+		"tag": ""
+	}
+}

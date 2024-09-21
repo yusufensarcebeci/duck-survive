@@ -1,0 +1,20 @@
+{
+	"name": "GameOverTexts",
+	"plugin-id": "Text",
+	"sid": 110091789035362,
+	"instanceVariables": [],
+	"behaviorTypes": [
+		{
+			"behaviorId": "Tween",
+			"name": "Tween",
+			"sid": 122061762101031
+		}
+	],
+	"effectTypes": [],
+	"members": [
+		"GameOverSurviveRateText",
+		"GameOverTimeText",
+		"GameOverHighScoreText",
+		"GameOverDeathCountText"
+	]
+}

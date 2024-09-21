@@ -1,0 +1,15 @@
+{
+	"name": "CollectableModels",
+	"plugin-id": "Mikal_3DObject",
+	"sid": 961166900262618,
+	"instanceVariables": [],
+	"behaviorTypes": [],
+	"effectTypes": [],
+	"members": [
+		"AppleModel",
+		"BananaModel",
+		"MuffinModel",
+		"PancakeModel",
+		"MushroomModel"
+	]
+}

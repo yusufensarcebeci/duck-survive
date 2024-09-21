@@ -1,0 +1,56 @@
+{
+	"name": "SlotBg1",
+	"plugin-id": "Sprite",
+	"sid": 642848837043249,
+	"isGlobal": false,
+	"instanceVariables": [],
+	"behaviorTypes": [],
+	"effectTypes": [
+		{
+			"effectId": "hsladjust",
+			"name": "AdjustHSL"
+		}
+	],
+	"animations": {
+		"items": [
+			{
+				"frames": [
+					{
+						"width": 258,
+						"height": 258,
+						"originX": 0.5,
+						"originY": 0.5,
+						"originalSource": "",
+						"exportFormat": "lossless",
+						"exportQuality": 0.8,
+						"fileType": "image/png",
+						"imageSpriteId": 8496505,
+						"collisionPoly": {
+							"points": [
+								0.10077519379844961,
+								0.003875968992248062,
+								0.9961240310077519,
+								0.10077519379844961,
+								0.8992248062015504,
+								0.9961240310077519,
+								0.003875968992248062,
+								0.8992248062015504
+							]
+						},
+						"useCollisionPoly": true,
+						"duration": 1,
+						"tag": ""
+					}
+				],
+				"sid": 745996269994037,
+				"name": "Animation 1",
+				"isLooping": false,
+				"isPingPong": false,
+				"repeatCount": 1,
+				"repeatTo": 0,
+				"speed": 5
+			}
+		],
+		"subfolders": []
+	}
+}
